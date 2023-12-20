@@ -1,5 +1,3 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 const JSON5 = require('json5');
 
 function changeSwitch(index,job){
