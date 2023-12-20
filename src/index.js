@@ -1,19 +1,24 @@
 function changeSwitch(index,job){
     var location = index.split('.');
     var i = location[0], j = location[1];
-    script = JSON5.parse(script);
     if(job == 'on'){
-        if(script[i].groups[j].hasOwnProperty('enable') == true) delete script[i].groups[j].enable;
+        if(script[i].groups[j].hasOwnProperty('enable') == true){
+            delete script[i].groups[j].enable;
+            alert('已打开');
+        }
         else alert('该规则已经打开了');
     }
     else if(job == 'off'){
         if(script[i].groups[j].hasOwnProperty('enable') == true) alert('该规则已经关闭了');
-        else script[i].groups[j]['enable'] = 'false';
+        else{
+            script[i].groups[j]['enable'] = 'false';
+            alert('已关闭');
+        }
     }
 };
 
 function output(){
-    navigator.clipboard.writeText(script).then(() => {
+    navigator.clipboard.writeText(JSON5.stringify(script).slice(1,-1)).then(() => {
         alert('已复制到剪切板');
     });
 };
