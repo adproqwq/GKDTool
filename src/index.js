@@ -1,4 +1,4 @@
-import JSON5 from 'json5'
+const JSON5 = require('json5')
 
 function changeSwitch(index,job){
     var location = index.split('.');
