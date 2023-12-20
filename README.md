@@ -1,0 +1,2 @@
+# GKD_subscriptionSwitchController
+GKD默认订阅自定义规则开关
