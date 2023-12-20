@@ -1,2 +1,2 @@
-# GKD_subscriptionSwitchController
-GKD默认订阅自定义规则开关
+# 用途
+用于自定义GKD默认订阅规则的开关状态
