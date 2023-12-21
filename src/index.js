@@ -19,29 +19,85 @@ function changeSwitch(index,job){
 
 function search(){
     var target = document.getElementById('name').value;
-    var initTable = `
-    <table border="1">
-        <thead>
-            <tr>
-                <th>应用名</th>
-                <th>包名</th>
-                <th>规则名</th>
-                <th>规则描述</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>`;
-    document.getElementById('appList').innerHTML = initTable;
-    eachAppRules = '';
-    for(var i in script){
-        if(script[i].name == target || script[i].id == target){
+    if(target == '') getDetails();
+    else{
+        var initTable = `
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>应用名</th>
+                    <th>包名</th>
+                    <th>规则名</th>
+                    <th>规则描述</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>`;
+        document.getElementById('appList').innerHTML = initTable;
+        eachAppRules = '';
+        for(var i in script){
+            if(script[i].name == target || script[i].id == target){
+                var packageName, appName, ruleName, desc;
+                packageName = script[i].id;
+                appName = script[i].name;
+                for(var j in script[i].groups){
+                    ruleName = script[i].groups[j].name;
+                    if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
+                    else desc = '该规则暂无描述';
+                    eachAppRules += `
+                    <tr>
+                        <td>${appName}</td>
+                        <td>${packageName}</td>
+                        <td>${ruleName}</td>
+                        <td>${desc}</td>
+                        <td>
+                            <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
+                            <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                        </td>
+                    </tr>`;
+                };
+            }
+        }
+        var ruleList = document.querySelector('tbody');
+        ruleList.innerHTML = eachAppRules;
+    }
+};
+
+function output(){
+    navigator.clipboard.writeText(JSON5.stringify(script).slice(1,-1)).then(() => {
+        alert('已复制到剪切板');
+    });
+};
+
+var script;
+function getDetails(){
+    axios.get('../gkd.json5').then(function(data){
+        data = JSON5.parse(data.data);
+        script = data.apps;
+        var initTable = `
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>应用名</th>
+                    <th>包名</th>
+                    <th>规则名</th>
+                    <th>规则描述</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>`;
+        document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
+        document.getElementById('appList').innerHTML = initTable;
+        var eachAppRules = '';
+        for(var i in data.apps){
             var packageName, appName, ruleName, desc;
-            packageName = script[i].id;
-            appName = script[i].name;
-            for(var j in script[i].groups){
-                ruleName = script[i].groups[j].name;
-                if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
+            packageName = data.apps[i].id;
+            appName = data.apps[i].name;
+            for(var j in data.apps[i].groups){
+                ruleName = data.apps[i].groups[j].name;
+                if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
                 else desc = '该规则暂无描述';
                 eachAppRules += `
                 <tr>
@@ -55,59 +111,8 @@ function search(){
                     </td>
                 </tr>`;
             };
-        }
-    }
-    var ruleList = document.querySelector('tbody');
-    ruleList.innerHTML = eachAppRules;
-};
-
-function output(){
-    navigator.clipboard.writeText(JSON5.stringify(script).slice(1,-1)).then(() => {
-        alert('已复制到剪切板');
+        };
+        var ruleList = document.querySelector('tbody');
+        ruleList.innerHTML = eachAppRules;
     });
 };
-
-var script;
-axios.get('../gkd.json5').then(function(data){
-    data = JSON5.parse(data.data);
-    script = data.apps;
-    var initTable = `
-    <table border="1">
-        <thead>
-            <tr>
-                <th>应用名</th>
-                <th>包名</th>
-                <th>规则名</th>
-                <th>规则描述</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>`;
-    document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
-    document.getElementById('appList').innerHTML = initTable;
-    var eachAppRules = '';
-    for(var i in data.apps){
-        var packageName, appName, ruleName, desc;
-        packageName = data.apps[i].id;
-        appName = data.apps[i].name;
-        for(var j in data.apps[i].groups){
-            ruleName = data.apps[i].groups[j].name;
-            if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
-            else desc = '该规则暂无描述';
-            eachAppRules += `
-            <tr>
-                <td>${appName}</td>
-                <td>${packageName}</td>
-                <td>${ruleName}</td>
-                <td>${desc}</td>
-                <td>
-                    <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
-                    <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
-                </td>
-            </tr>`;
-        };
-    };
-    var ruleList = document.querySelector('tbody');
-    ruleList.innerHTML = eachAppRules;
-});
