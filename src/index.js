@@ -17,6 +17,50 @@ function changeSwitch(index,job){
     }
 };
 
+function search(){
+    var target = document.getElementById('name').value;
+    var initTable = `
+    <table border="1">
+        <thead>
+            <tr>
+                <th>应用名</th>
+                <th>包名</th>
+                <th>规则名</th>
+                <th>规则描述</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>`;
+    document.getElementById('appList').innerHTML = initTable;
+    eachAppRules = '';
+    for(var i in script){
+        if(script[i].name == target){
+            var packageName, appName, ruleName, desc;
+            packageName = script[i].id;
+            appName = script[i].name;
+            for(var j in script[i].groups){
+                ruleName = script[i].groups[j].name;
+                if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
+                else desc = '该规则暂无描述';
+                eachAppRules += `
+                <tr>
+                    <td>${appName}</td>
+                    <td>${packageName}</td>
+                    <td>${ruleName}</td>
+                    <td>${desc}</td>
+                    <td>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                    </td>
+                </tr>`;
+            };
+        }
+    }
+    var ruleList = document.querySelector('tbody');
+    ruleList.innerHTML = eachAppRules;
+};
+
 function output(){
     navigator.clipboard.writeText(JSON5.stringify(script).slice(1,-1)).then(() => {
         alert('已复制到剪切板');
