@@ -35,7 +35,7 @@ function search(){
     document.getElementById('appList').innerHTML = initTable;
     eachAppRules = '';
     for(var i in script){
-        if(script[i].name == target){
+        if(script[i].name == target || script[i].id == target){
             var packageName, appName, ruleName, desc;
             packageName = script[i].id;
             appName = script[i].name;
