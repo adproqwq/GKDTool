@@ -8,15 +8,14 @@
     </head>
     <body>
         <div>
-            <input id="name" placeholder="请输入准确的应用名或包名以搜索">
+            <input id="name" placeholder="请输入准确的应用名或包名以搜索" onkeydown="if(event.keyCode == 13) search();">
         </div>
         <div>
-            <button type="submit" class="btn boom" onclick="search();">搜索</button>
             <button type="button" class="btn boom" onclick="output();">导出</button>
         </div>
         <div id="version">
             <div id="subVer"></div>
-            <div id="codeVer">当前程序版本：beta-0.2.1</div>
+            <div id="codeVer">当前程序版本：beta-0.2.2</div>
         </div>
         <div id="appList"></div>
         <div id="copyright-box">

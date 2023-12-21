@@ -94,3 +94,14 @@
 #copyright-footer.column.small .footer-column-b li {
     margin: 2px 3px;
 }
+
+input{
+    width: 100%;
+    font-size: 2rem;
+    line-height: 2;
+    border: 0;
+    outline: 0;
+    text-decoration: 4px solid dodgerblue underline;
+    text-underline-offset: 10px;
+    text-align: center;
+}
