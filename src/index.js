@@ -19,6 +19,19 @@ function changeSwitch(index,job){
 
 function search(){
     var target = document.getElementById('name').value;
+    var initTable = `
+    <table border="1">
+        <thead>
+            <tr>
+                <th>应用名</th>
+                <th>包名</th>
+                <th>规则名</th>
+                <th>规则描述</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>`;
     document.getElementById('appList').innerHTML = initTable;
     eachAppRules = '';
     for(var i in script){
@@ -44,6 +57,7 @@ function search(){
             };
         }
     }
+    var ruleList = document.querySelector('tbody');
     ruleList.innerHTML = eachAppRules;
 };
 
