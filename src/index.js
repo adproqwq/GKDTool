@@ -19,6 +19,8 @@ function changeSwitch(index,job){
 
 function search(){
     var target = document.getElementById('name').value;
+    var same, include = 0;
+    var preferences, secondaryOptions = [];
     if(target == '') getDetails();
     else{
         var initTable = `
@@ -37,27 +39,57 @@ function search(){
         document.getElementById('appList').innerHTML = initTable;
         eachAppRules = '';
         for(var i in script){
-            if(script[i].name == target || script[i].id == target){
-                var packageName, appName, ruleName, desc;
-                packageName = script[i].id;
-                appName = script[i].name;
-                for(var j in script[i].groups){
-                    ruleName = script[i].groups[j].name;
-                    if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
-                    else desc = '该规则暂无描述';
-                    eachAppRules += `
-                    <tr>
-                        <td>${appName}</td>
-                        <td>${packageName}</td>
-                        <td>${ruleName}</td>
-                        <td>${desc}</td>
-                        <td>
-                            <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
-                            <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
-                        </td>
-                    </tr>`;
-                };
+            if(script[i].name.includes(target) == true || script[i].id.includes(target) == true){
+                if(script[i].name == target || script[i].id == target){
+                    preferences.push(i);
+                    same += 1;
+                }
+                else{
+                    secondaryOptions.push(i);
+                    include += 1;
+                }
             }
+        }
+        var packageName, appName, ruleName, desc;
+        for(var i in preferences){
+            packageName = script[preferences[i]].id;
+            appName = script[preferences[i]].name;
+            for(var j in script[preferences[i]].groups){
+                ruleName = script[preferences[i]].groups[j].name;
+                if(script[preferences[i]].groups[j].hasOwnProperty('desc') == true) desc = script[preferences[i]].groups[j].desc;
+                else desc = '该规则暂无描述';
+                eachAppRules += `
+                <tr>
+                    <td>${appName}</td>
+                    <td>${packageName}</td>
+                    <td>${ruleName}</td>
+                    <td>${desc}</td>
+                    <td>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                    </td>
+                </tr>`;
+            };
+        }
+        for(var i in secondaryOptions){
+            packageName = script[secondaryOptions[i]].id;
+            appName = script[secondaryOptions[i]].name;
+            for(var j in script[secondaryOptions[i]].groups){
+                ruleName = script[secondaryOptions[i]].groups[j].name;
+                if(script[secondaryOptions[i]].groups[j].hasOwnProperty('desc') == true) desc = script[secondaryOptions[i]].groups[j].desc;
+                else desc = '该规则暂无描述';
+                eachAppRules += `
+                <tr>
+                    <td>${appName}</td>
+                    <td>${packageName}</td>
+                    <td>${ruleName}</td>
+                    <td>${desc}</td>
+                    <td>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                    </td>
+                </tr>`;
+            };
         }
         var ruleList = document.querySelector('tbody');
         ruleList.innerHTML = eachAppRules;
