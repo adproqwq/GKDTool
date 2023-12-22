@@ -1,3 +1,18 @@
+var initTable = `
+<table id="appListTable">
+    <thead>
+        <tr>
+            <th>应用名</th>
+            <th>包名</th>
+            <th>规则名</th>
+            <th>规则描述</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>`;
+var script;
+
 function changeSwitch(index,job){
     var location = index.split('.');
     var i = location[0], j = location[1];
@@ -23,19 +38,6 @@ function search(){
     var preferences, secondaryOptions = [];
     if(target == '') getDetails();
     else{
-        var initTable = `
-        <table id="appListTable">
-            <thead>
-                <tr>
-                    <th>应用名</th>
-                    <th>包名</th>
-                    <th>规则名</th>
-                    <th>规则描述</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>`;
         document.getElementById('appList').innerHTML = initTable;
         eachAppRules = '';
         for(var i in script){
@@ -102,24 +104,10 @@ function output(){
     });
 };
 
-var script;
 function getDetails(){
     axios.get('../gkd.json5').then(function(data){
         data = JSON5.parse(data.data);
         script = data.apps;
-        var initTable = `
-        <table id="appListTable">
-            <thead>
-                <tr>
-                    <th>应用名</th>
-                    <th>包名</th>
-                    <th>规则名</th>
-                    <th>规则描述</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>`;
         document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
         document.getElementById('appList').innerHTML = initTable;
         var eachAppRules = '';
