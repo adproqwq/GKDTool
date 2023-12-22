@@ -95,7 +95,7 @@
     margin: 2px 3px;
 }
 
-input{
+input {
     width: 100%;
     font-size: 2rem;
     line-height: 2;
@@ -104,4 +104,20 @@ input{
     text-decoration: 4px solid dodgerblue underline;
     text-underline-offset: 10px;
     text-align: center;
+}
+
+#appListTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+#appListTable td, #appListTable th {
+    border: 1px solid dodgerblue;
+    padding: 8px;
+}
+#appListTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-right: 1px solid #FF901E;
+    background-color: dodgerblue;
+    color: #FF901E;
 }

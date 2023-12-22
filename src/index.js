@@ -24,7 +24,7 @@ function search(){
     if(target == '') getDetails();
     else{
         var initTable = `
-        <table border="1">
+        <table id="appListTable">
             <thead>
                 <tr>
                     <th>应用名</th>
@@ -108,7 +108,7 @@ function getDetails(){
         data = JSON5.parse(data.data);
         script = data.apps;
         var initTable = `
-        <table border="1">
+        <table id="appListTable">
             <thead>
                 <tr>
                     <th>应用名</th>
