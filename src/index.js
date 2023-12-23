@@ -38,12 +38,13 @@ function changeSwitch(index,job){
 function search(){
     var target = document.getElementById('name').value;
     var same, include = 0;
-    var preferences, secondaryOptions = [];
+    var preferences = [];
+    var secondaryOptions = [];
     if(target == '') getDetails();
     else{
         document.getElementById('appList').innerHTML = initTable;
         eachAppRules = '';
-        for(var i in script){
+        for(let i in script){
             if(script[i].name.includes(target) == true || script[i].id.includes(target) == true){
                 if(script[i].name == target || script[i].id == target){
                     preferences.push(i);
@@ -56,12 +57,12 @@ function search(){
             }
         }
         var packageName, appName, ruleName, desc;
-        for(var i in preferences){
+        for(let i in preferences){
             packageName = script[preferences[i]].id;
             appName = script[preferences[i]].name;
-            for(var j in script[preferences[i]].groups){
+            for(let j in script[preferences[i]].groups){
                 ruleName = script[preferences[i]].groups[j].name;
-                if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                if(script[preferences[i]].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
                 else style = 'color: green;';
                 if(script[preferences[i]].groups[j].hasOwnProperty('desc') == true) desc = script[preferences[i]].groups[j].desc;
                 else desc = '该规则暂无描述';
@@ -79,12 +80,12 @@ function search(){
                 </tr>`;
             };
         }
-        for(var i in secondaryOptions){
+        for(let i in secondaryOptions){
             packageName = script[secondaryOptions[i]].id;
             appName = script[secondaryOptions[i]].name;
-            for(var j in script[secondaryOptions[i]].groups){
+            for(let j in script[secondaryOptions[i]].groups){
                 ruleName = script[secondaryOptions[i]].groups[j].name;
-                if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                if(script[secondaryOptions[i]].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
                 else style = 'color: green;';
                 if(script[secondaryOptions[i]].groups[j].hasOwnProperty('desc') == true) desc = script[secondaryOptions[i]].groups[j].desc;
                 else desc = '该规则暂无描述';
@@ -144,11 +145,11 @@ function getDetails(){
         document.getElementById('codeVer').innerHTML = '当前程序版本：' + codeVer;
         document.getElementById('appList').innerHTML = initTable;
         var eachAppRules = '';
-        for(var i in data.apps){
+        for(let i in data.apps){
             var packageName, appName, ruleName, desc, style;
             packageName = data.apps[i].id;
             appName = data.apps[i].name;
-            for(var j in data.apps[i].groups){
+            for(let j in data.apps[i].groups){
                 ruleName = data.apps[i].groups[j].name;
                 if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
                 else style = 'color: green;';
@@ -191,11 +192,11 @@ function readFile(){
         document.getElementById('codeVer').innerHTML = '当前程序版本：' + codeVer;
         document.getElementById('appList').innerHTML = initTable;
         var eachAppRules = '';
-        for(var i in data.apps){
+        for(let i in data.apps){
             var packageName, appName, ruleName, desc, style;
             packageName = data.apps[i].id;
             appName = data.apps[i].name;
-            for(var j in data.apps[i].groups){
+            for(let j in data.apps[i].groups){
                 ruleName = data.apps[i].groups[j].name;
                 if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
                 else style = 'color: green;';
