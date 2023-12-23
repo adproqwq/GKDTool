@@ -12,7 +12,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.5.0';
+const codeVer = 'beta-0.5.1';
 
 function changeSwitch(index,job){
     var location = index.split('.');
