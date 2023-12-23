@@ -96,7 +96,7 @@
     margin: 2px 3px;
 }
 
-input {
+input#name {
     width: 100%;
     font-size: 2rem;
     line-height: 2;

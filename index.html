@@ -12,11 +12,12 @@
         </div>
         <div>
             <button type="button" class="btn boom" onclick="output('all');">导出全部</button>
+            <input id="upload" type="file" accept=".json5, application/json" onchange="readFile();">
         </div>
         <div id="version">
             <div id="subVer"></div>
             <div>
-                <span id="codeVer">当前程序版本：</span>
+                <span id="codeVer"></span>
             </div>
         </div>
         <div id="appList"></div>

@@ -12,7 +12,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.4.0';
+const codeVer = 'beta-0.5.0';
 
 function changeSwitch(index,job){
     var location = index.split('.');
@@ -141,7 +141,7 @@ function getDetails(){
         fullScript = data;
         script = data.apps;
         document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
-        document.getElementById('codeVer').innerHTML = document.getElementById('codeVer').innerHTML + codeVer;
+        document.getElementById('codeVer').innerHTML = '当前程序版本：' + codeVer;
         document.getElementById('appList').innerHTML = initTable;
         var eachAppRules = '';
         for(var i in data.apps){
@@ -171,4 +171,51 @@ function getDetails(){
         var ruleList = document.querySelector('tbody');
         ruleList.innerHTML = eachAppRules;
     });
+};
+
+function readFile(){
+    const objFile = document.getElementById('upload');
+    if(objFile.value === ''){
+        alert('请选择文件');
+        return
+    }
+    const subFile = objFile.files;
+    const reader = new FileReader();
+    reader.readAsText(subFile[0],'UTF-8');
+    reader.onload = function(e){
+        let data = e.target.result;
+        data = JSON5.parse(data);
+        fullScript = data;
+        script = data.apps;
+        document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
+        document.getElementById('codeVer').innerHTML = '当前程序版本：' + codeVer;
+        document.getElementById('appList').innerHTML = initTable;
+        var eachAppRules = '';
+        for(var i in data.apps){
+            var packageName, appName, ruleName, desc, style;
+            packageName = data.apps[i].id;
+            appName = data.apps[i].name;
+            for(var j in data.apps[i].groups){
+                ruleName = data.apps[i].groups[j].name;
+                if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                else style = 'color: green;';
+                if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
+                else desc = '该规则暂无描述';
+                eachAppRules += `
+                <tr>
+                    <td>${appName}</td>
+                    <td>${packageName}</td>
+                    <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
+                    <td>${desc}</td>
+                    <td>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                        <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
+                    </td>
+                </tr>`;
+            };
+        };
+        var ruleList = document.querySelector('tbody');
+        ruleList.innerHTML = eachAppRules;
+    }
 };
