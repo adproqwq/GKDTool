@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-        <title>GKD默认订阅自定义规则开关</title>
+        <title>GKD默认订阅自定义规则开关工具</title>
         <link rel="stylesheet" href="./style/index.css">
     </head>
     <body>
@@ -11,11 +11,13 @@
             <input id="name" placeholder="请输入准确的应用名或包名以搜索" onkeydown="if(event.keyCode == 13) search();">
         </div>
         <div>
-            <button type="button" class="btn boom" onclick="output('all');">导出所有</button>
+            <button type="button" class="btn boom" onclick="output('all');">导出全部</button>
         </div>
         <div id="version">
             <div id="subVer"></div>
-            <div id="codeVer">当前程序版本：beta-0.3.0</div>
+            <div>
+                <span id="codeVer">当前程序版本：</span>
+            </div>
         </div>
         <div id="appList"></div>
         <div id="copyright-box">

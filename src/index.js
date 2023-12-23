@@ -11,7 +11,8 @@ var initTable = `
     </thead>
     <tbody></tbody>
 </table>`;
-var script;
+var script, fullScript;
+const codeVer = 'beta-0.4.0';
 
 function changeSwitch(index,job){
     var location = index.split('.');
@@ -108,9 +109,22 @@ function search(){
 
 function output(type){
     if(type == 'all'){
-        navigator.clipboard.writeText(JSON5.stringify(script).slice(1,-1)).then(() => {
-            alert('已复制到剪切板');
+        delete fullScript.supportUri;
+        delete fullScript.checkUpdateUrl;
+        fullScript['id'] = '9999';
+        fullScript['name'] = '默认订阅-改';
+        fullScript['author'] = 'Adpro';
+        fullScript['version'] = '1';
+        fullScript['desc'] = '由Adpro开发的“GKD默认订阅自定义规则开关工具”生成'
+        const blob = new Blob([JSON5.stringify(fullScript)],{
+            type: 'application/json'
         });
+        const downloadURL = URL.createObjectURL(blob);
+        const aTag = document.createElement('a');
+        aTag.href = downloadURL;
+        aTag.download = '默认订阅-改.json5';
+        aTag.click();
+        URL.revokeObjectURL(downloadURL);
     }
     else{
         var location = type.split('.');
@@ -124,8 +138,10 @@ function output(type){
 function getDetails(){
     axios.get('../gkd.json5').then(function(data){
         data = JSON5.parse(data.data);
+        fullScript = data;
         script = data.apps;
         document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
+        document.getElementById('codeVer').innerHTML = document.getElementById('codeVer').innerHTML + codeVer;
         document.getElementById('appList').innerHTML = initTable;
         var eachAppRules = '';
         for(var i in data.apps){
