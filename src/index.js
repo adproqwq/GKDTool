@@ -12,7 +12,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.5.1';
+const codeVer = 'beta-0.6.0';
 
 function changeSwitch(index,job){
     var location = index.split('.');
@@ -40,7 +40,36 @@ function search(){
     var same, include = 0;
     var preferences = [];
     var secondaryOptions = [];
-    if(target == '') getDetails();
+    if(target == ''){
+        var eachAppRules = '';
+        for(let i in script){
+            var packageName, appName, ruleName, desc, style;
+            packageName = script[i].id;
+            appName = script[i].name;
+            for(let j in script[i].groups){
+                ruleName = script[i].groups[j].name;
+                if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                else style = 'color: green;';
+                if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
+                else desc = '该规则暂无描述';
+                eachAppRules += `
+                <tr>
+                    <td>${appName}</td>
+                    <td>${packageName}</td>
+                    <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
+                    <td>${desc}</td>
+                    <td>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
+                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                        <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
+                        <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
+                    </td>
+                </tr>`;
+            };
+        };
+        var ruleList = document.querySelector('tbody');
+        ruleList.innerHTML = eachAppRules;
+    }
     else{
         document.getElementById('appList').innerHTML = initTable;
         eachAppRules = '';
@@ -70,12 +99,13 @@ function search(){
                 <tr>
                     <td>${appName}</td>
                     <td>${packageName}</td>
-                    <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
+                    <td id="${String(preferences[i]) + '.' + String(j)}" style="${style}">${ruleName}</td>
                     <td>${desc}</td>
                     <td>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
-                        <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
+                        <button onclick="changeSwitch('${String(preferences[i]) + '.' + String(j)}','on');">打开</button>
+                        <button onclick="changeSwitch('${String(preferences[i]) + '.' + String(j)}','off');">关闭</button>
+                        <button onclick="edit('${String(preferences[i]) + '.' + String(j)}');">编辑</button>
+                        <button onclick="output('${String(preferences[i]) + '.' + String(j)}')">导出该规则</button>
                     </td>
                 </tr>`;
             };
@@ -93,12 +123,13 @@ function search(){
                 <tr>
                     <td>${appName}</td>
                     <td>${packageName}</td>
-                    <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
+                    <td id="${String(secondaryOptions[i]) + '.' + String(j)}" style="${style}">${ruleName}</td>
                     <td>${desc}</td>
                     <td>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
-                        <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
+                        <button onclick="changeSwitch('${String(secondaryOptions[i]) + '.' + String(j)}','on');">打开</button>
+                        <button onclick="changeSwitch('${String(secondaryOptions[i]) + '.' + String(j)}','off');">关闭</button>
+                        <button onclick="edit('${String(secondaryOptions[i]) + '.' + String(j)}');">编辑</button>
+                        <button onclick="output('${String(secondaryOptions[i]) + '.' + String(j)}')">导出该规则</button>
                     </td>
                 </tr>`;
             };
@@ -151,7 +182,7 @@ function getDetails(){
             appName = data.apps[i].name;
             for(let j in data.apps[i].groups){
                 ruleName = data.apps[i].groups[j].name;
-                if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                if(data.apps[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
                 else style = 'color: green;';
                 if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
                 else desc = '该规则暂无描述';
@@ -164,6 +195,7 @@ function getDetails(){
                     <td>
                         <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
                         <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                        <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
                         <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
                     </td>
                 </tr>`;
@@ -211,6 +243,7 @@ function readFile(){
                     <td>
                         <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
                         <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                        <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
                         <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
                     </td>
                 </tr>`;
@@ -219,4 +252,19 @@ function readFile(){
         var ruleList = document.querySelector('tbody');
         ruleList.innerHTML = eachAppRules;
     }
+};
+
+function edit(location){
+    var i = location.split('.')[0];
+    var j = location.split('.')[1];
+    document.getElementById('content').value = JSON5.stringify(script[i].groups[j],null,2);
+    document.getElementById('edit').style.display = 'block';
+    document.querySelector('.close').onclick = function(){
+        document.getElementById('edit').style.display = 'none';
+    };
+    document.getElementById('save').onclick = function(){
+        script[i].groups[j] = JSON5.parse(document.getElementById('content').value);
+        alert('保存成功！请不要刷新网页');
+        document.getElementById('edit').style.display = 'none';
+    };
 };
