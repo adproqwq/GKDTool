@@ -4,7 +4,7 @@ var initTable = `
         <tr>
             <th>应用名</th>
             <th>包名</th>
-            <th>规则名</th>
+            <th>规则组名称</th>
             <th>规则描述</th>
             <th>操作</th>
         </tr>
@@ -12,7 +12,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.7.0';
+const codeVer = 'beta-0.7.1';
 
 function changeSwitch(index,job){
     var location = index.split('.');
@@ -52,19 +52,7 @@ function search(){
                 else style = 'color: green;';
                 if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
                 else desc = '该规则暂无描述';
-                eachAppRules += `
-                <tr>
-                    <td>${appName}</td>
-                    <td>${packageName}</td>
-                    <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
-                    <td>${desc}</td>
-                    <td>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
-                        <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
-                        <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
-                    </td>
-                </tr>`;
+                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
             };
         };
         var ruleList = document.querySelector('tbody');
@@ -86,19 +74,7 @@ function search(){
                                 else style = 'color: green;';
                                 if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
                                 else desc = '该规则暂无描述';
-                                eachAppRules += `
-                                <tr>
-                                    <td>${appName}</td>
-                                    <td>${packageName}</td>
-                                    <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
-                                    <td>${desc}</td>
-                                    <td>
-                                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
-                                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
-                                        <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
-                                        <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
-                                    </td>
-                                </tr>`;
+                                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
                             }
                         }
                     }
@@ -119,19 +95,7 @@ function search(){
                             else style = 'color: green;';
                             if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
                             else desc = '该规则暂无描述';
-                            eachAppRules += `
-                            <tr>
-                                <td>${appName}</td>
-                                <td>${packageName}</td>
-                                <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
-                                <td>${desc}</td>
-                                <td>
-                                    <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
-                                    <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
-                                    <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
-                                    <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
-                                </td>
-                            </tr>`;
+                            eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
                         }
                     }
                 }
@@ -165,19 +129,7 @@ function search(){
                     else style = 'color: green;';
                     if(script[preferences[i]].groups[j].hasOwnProperty('desc') == true) desc = script[preferences[i]].groups[j].desc;
                     else desc = '该规则暂无描述';
-                    eachAppRules += `
-                    <tr>
-                        <td>${appName}</td>
-                        <td>${packageName}</td>
-                        <td id="${String(preferences[i]) + '.' + String(j)}" style="${style}">${ruleName}</td>
-                        <td>${desc}</td>
-                        <td>
-                            <button onclick="changeSwitch('${String(preferences[i]) + '.' + String(j)}','on');">打开</button>
-                            <button onclick="changeSwitch('${String(preferences[i]) + '.' + String(j)}','off');">关闭</button>
-                            <button onclick="edit('${String(preferences[i]) + '.' + String(j)}');">编辑</button>
-                            <button onclick="output('${String(preferences[i]) + '.' + String(j)}')">导出该规则</button>
-                        </td>
-                    </tr>`;
+                    eachAppRules += tableInfo(appName, packageName, String(preferences[i]) + '.' + String(j), style, ruleName);
                 };
             }
             for(let i in secondaryOptions){
@@ -189,19 +141,7 @@ function search(){
                     else style = 'color: green;';
                     if(script[secondaryOptions[i]].groups[j].hasOwnProperty('desc') == true) desc = script[secondaryOptions[i]].groups[j].desc;
                     else desc = '该规则暂无描述';
-                    eachAppRules += `
-                    <tr>
-                        <td>${appName}</td>
-                        <td>${packageName}</td>
-                        <td id="${String(secondaryOptions[i]) + '.' + String(j)}" style="${style}">${ruleName}</td>
-                        <td>${desc}</td>
-                        <td>
-                            <button onclick="changeSwitch('${String(secondaryOptions[i]) + '.' + String(j)}','on');">打开</button>
-                            <button onclick="changeSwitch('${String(secondaryOptions[i]) + '.' + String(j)}','off');">关闭</button>
-                            <button onclick="edit('${String(secondaryOptions[i]) + '.' + String(j)}');">编辑</button>
-                            <button onclick="output('${String(secondaryOptions[i]) + '.' + String(j)}')">导出该规则</button>
-                        </td>
-                    </tr>`;
+                    eachAppRules += tableInfo(appName, packageName, String(secondaryOptions[i]) + '.' + String(j), style, ruleName);
                 };
             }
             var ruleList = document.querySelector('tbody');
@@ -257,19 +197,7 @@ function getDetails(){
                 else style = 'color: green;';
                 if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
                 else desc = '该规则暂无描述';
-                eachAppRules += `
-                <tr>
-                    <td>${appName}</td>
-                    <td>${packageName}</td>
-                    <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
-                    <td>${desc}</td>
-                    <td>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
-                        <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
-                        <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
-                    </td>
-                </tr>`;
+                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
             };
         };
         var ruleList = document.querySelector('tbody');
@@ -305,19 +233,7 @@ function readFile(){
                 else style = 'color: green;';
                 if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
                 else desc = '该规则暂无描述';
-                eachAppRules += `
-                <tr>
-                    <td>${appName}</td>
-                    <td>${packageName}</td>
-                    <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
-                    <td>${desc}</td>
-                    <td>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
-                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
-                        <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
-                        <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
-                    </td>
-                </tr>`;
+                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
             };
         };
         var ruleList = document.querySelector('tbody');
@@ -338,4 +254,21 @@ function edit(location){
         alert('保存成功！请不要刷新网页');
         document.getElementById('edit').style.display = 'none';
     };
+};
+
+function tableInfo(appName, packageName, id, style, ruleName){
+    let result = `
+    <tr>
+        <td>${appName}</td>
+        <td>${packageName}</td>
+        <td id="${id}" style="${style}">${ruleName}</td>
+        <td>${desc}</td>
+        <td>
+            <button onclick="changeSwitch('${id}','on');">打开</button>
+            <button onclick="changeSwitch('${id}','off');">关闭</button>
+            <button onclick="edit('${id}');">编辑</button>
+            <button onclick="output('${id}')">导出该规则</button>
+        </td>
+    </tr>`;
+    return result;
 };
