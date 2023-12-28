@@ -12,7 +12,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.6.0';
+const codeVer = 'beta-0.7.0';
 
 function changeSwitch(index,job){
     var location = index.split('.');
@@ -71,71 +71,142 @@ function search(){
         ruleList.innerHTML = eachAppRules;
     }
     else{
-        document.getElementById('appList').innerHTML = initTable;
-        eachAppRules = '';
-        for(let i in script){
-            if(script[i].name.includes(target) == true || script[i].id.includes(target) == true){
-                if(script[i].name == target || script[i].id == target){
-                    preferences.push(i);
-                    same += 1;
+        if(target.split(' ').indexOf('rules') != -1){
+            if(target.split(' ').length == 3){
+                document.getElementById('appList').innerHTML = initTable;
+                eachAppRules = '';
+                for(let i in script){
+                    if(script[i].name == target.split(' ')[2] || script[i].id == target.split(' ')[2]){
+                        for(let j in script[i].groups){
+                            if(script[i].groups[j].name.includes(target.split(' ')[1]) == true){
+                                packageName = script[i].id;
+                                appName = script[i].name;
+                                ruleName = script[i].groups[j].name;
+                                if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                                else style = 'color: green;';
+                                if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
+                                else desc = '该规则暂无描述';
+                                eachAppRules += `
+                                <tr>
+                                    <td>${appName}</td>
+                                    <td>${packageName}</td>
+                                    <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
+                                    <td>${desc}</td>
+                                    <td>
+                                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
+                                        <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                                        <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
+                                        <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
+                                    </td>
+                                </tr>`;
+                            }
+                        }
+                    }
                 }
-                else{
-                    secondaryOptions.push(i);
-                    include += 1;
+                var ruleList = document.querySelector('tbody');
+                ruleList.innerHTML = eachAppRules;
+            }
+            else if(target.split(' ').length == 2){
+                document.getElementById('appList').innerHTML = initTable;
+                eachAppRules = '';
+                for(let i in script){
+                    for(let j in script[i].groups){
+                        if(script[i].groups[j].name.includes(target.split(' ')[1]) == true){
+                            packageName = script[i].id;
+                            appName = script[i].name;
+                            ruleName = script[i].groups[j].name;
+                            if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                            else style = 'color: green;';
+                            if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
+                            else desc = '该规则暂无描述';
+                            eachAppRules += `
+                            <tr>
+                                <td>${appName}</td>
+                                <td>${packageName}</td>
+                                <td id="${String(i) + '.' + String(j)}" style="${style}">${ruleName}</td>
+                                <td>${desc}</td>
+                                <td>
+                                    <button onclick="changeSwitch('${String(i) + '.' + String(j)}','on');">打开</button>
+                                    <button onclick="changeSwitch('${String(i) + '.' + String(j)}','off');">关闭</button>
+                                    <button onclick="edit('${String(i) + '.' + String(j)}');">编辑</button>
+                                    <button onclick="output('${String(i) + '.' + String(j)}')">导出该规则</button>
+                                </td>
+                            </tr>`;
+                        }
+                    }
+                }
+                var ruleList = document.querySelector('tbody');
+                ruleList.innerHTML = eachAppRules;
+            }
+            else if(target.split(' ').length == 1) alert('命令非法！');
+        }
+        else{
+            document.getElementById('appList').innerHTML = initTable;
+            eachAppRules = '';
+            for(let i in script){
+                if(script[i].name.includes(target) == true || script[i].id.includes(target) == true){
+                    if(script[i].name == target || script[i].id == target){
+                        preferences.push(i);
+                        same += 1;
+                    }
+                    else{
+                        secondaryOptions.push(i);
+                        include += 1;
+                    }
                 }
             }
+            var packageName, appName, ruleName, desc;
+            for(let i in preferences){
+                packageName = script[preferences[i]].id;
+                appName = script[preferences[i]].name;
+                for(let j in script[preferences[i]].groups){
+                    ruleName = script[preferences[i]].groups[j].name;
+                    if(script[preferences[i]].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                    else style = 'color: green;';
+                    if(script[preferences[i]].groups[j].hasOwnProperty('desc') == true) desc = script[preferences[i]].groups[j].desc;
+                    else desc = '该规则暂无描述';
+                    eachAppRules += `
+                    <tr>
+                        <td>${appName}</td>
+                        <td>${packageName}</td>
+                        <td id="${String(preferences[i]) + '.' + String(j)}" style="${style}">${ruleName}</td>
+                        <td>${desc}</td>
+                        <td>
+                            <button onclick="changeSwitch('${String(preferences[i]) + '.' + String(j)}','on');">打开</button>
+                            <button onclick="changeSwitch('${String(preferences[i]) + '.' + String(j)}','off');">关闭</button>
+                            <button onclick="edit('${String(preferences[i]) + '.' + String(j)}');">编辑</button>
+                            <button onclick="output('${String(preferences[i]) + '.' + String(j)}')">导出该规则</button>
+                        </td>
+                    </tr>`;
+                };
+            }
+            for(let i in secondaryOptions){
+                packageName = script[secondaryOptions[i]].id;
+                appName = script[secondaryOptions[i]].name;
+                for(let j in script[secondaryOptions[i]].groups){
+                    ruleName = script[secondaryOptions[i]].groups[j].name;
+                    if(script[secondaryOptions[i]].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                    else style = 'color: green;';
+                    if(script[secondaryOptions[i]].groups[j].hasOwnProperty('desc') == true) desc = script[secondaryOptions[i]].groups[j].desc;
+                    else desc = '该规则暂无描述';
+                    eachAppRules += `
+                    <tr>
+                        <td>${appName}</td>
+                        <td>${packageName}</td>
+                        <td id="${String(secondaryOptions[i]) + '.' + String(j)}" style="${style}">${ruleName}</td>
+                        <td>${desc}</td>
+                        <td>
+                            <button onclick="changeSwitch('${String(secondaryOptions[i]) + '.' + String(j)}','on');">打开</button>
+                            <button onclick="changeSwitch('${String(secondaryOptions[i]) + '.' + String(j)}','off');">关闭</button>
+                            <button onclick="edit('${String(secondaryOptions[i]) + '.' + String(j)}');">编辑</button>
+                            <button onclick="output('${String(secondaryOptions[i]) + '.' + String(j)}')">导出该规则</button>
+                        </td>
+                    </tr>`;
+                };
+            }
+            var ruleList = document.querySelector('tbody');
+            ruleList.innerHTML = eachAppRules;
         }
-        var packageName, appName, ruleName, desc;
-        for(let i in preferences){
-            packageName = script[preferences[i]].id;
-            appName = script[preferences[i]].name;
-            for(let j in script[preferences[i]].groups){
-                ruleName = script[preferences[i]].groups[j].name;
-                if(script[preferences[i]].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
-                else style = 'color: green;';
-                if(script[preferences[i]].groups[j].hasOwnProperty('desc') == true) desc = script[preferences[i]].groups[j].desc;
-                else desc = '该规则暂无描述';
-                eachAppRules += `
-                <tr>
-                    <td>${appName}</td>
-                    <td>${packageName}</td>
-                    <td id="${String(preferences[i]) + '.' + String(j)}" style="${style}">${ruleName}</td>
-                    <td>${desc}</td>
-                    <td>
-                        <button onclick="changeSwitch('${String(preferences[i]) + '.' + String(j)}','on');">打开</button>
-                        <button onclick="changeSwitch('${String(preferences[i]) + '.' + String(j)}','off');">关闭</button>
-                        <button onclick="edit('${String(preferences[i]) + '.' + String(j)}');">编辑</button>
-                        <button onclick="output('${String(preferences[i]) + '.' + String(j)}')">导出该规则</button>
-                    </td>
-                </tr>`;
-            };
-        }
-        for(let i in secondaryOptions){
-            packageName = script[secondaryOptions[i]].id;
-            appName = script[secondaryOptions[i]].name;
-            for(let j in script[secondaryOptions[i]].groups){
-                ruleName = script[secondaryOptions[i]].groups[j].name;
-                if(script[secondaryOptions[i]].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
-                else style = 'color: green;';
-                if(script[secondaryOptions[i]].groups[j].hasOwnProperty('desc') == true) desc = script[secondaryOptions[i]].groups[j].desc;
-                else desc = '该规则暂无描述';
-                eachAppRules += `
-                <tr>
-                    <td>${appName}</td>
-                    <td>${packageName}</td>
-                    <td id="${String(secondaryOptions[i]) + '.' + String(j)}" style="${style}">${ruleName}</td>
-                    <td>${desc}</td>
-                    <td>
-                        <button onclick="changeSwitch('${String(secondaryOptions[i]) + '.' + String(j)}','on');">打开</button>
-                        <button onclick="changeSwitch('${String(secondaryOptions[i]) + '.' + String(j)}','off');">关闭</button>
-                        <button onclick="edit('${String(secondaryOptions[i]) + '.' + String(j)}');">编辑</button>
-                        <button onclick="output('${String(secondaryOptions[i]) + '.' + String(j)}')">导出该规则</button>
-                    </td>
-                </tr>`;
-            };
-        }
-        var ruleList = document.querySelector('tbody');
-        ruleList.innerHTML = eachAppRules;
     }
 };
 
