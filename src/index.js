@@ -52,7 +52,7 @@ function search(){
                 else style = 'color: green;';
                 if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
                 else desc = '该规则暂无描述';
-                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
+                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
             };
         };
         var ruleList = document.querySelector('tbody');
@@ -74,7 +74,7 @@ function search(){
                                 else style = 'color: green;';
                                 if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
                                 else desc = '该规则暂无描述';
-                                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
+                                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
                             }
                         }
                     }
@@ -95,7 +95,7 @@ function search(){
                             else style = 'color: green;';
                             if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
                             else desc = '该规则暂无描述';
-                            eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
+                            eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
                         }
                     }
                 }
@@ -129,7 +129,7 @@ function search(){
                     else style = 'color: green;';
                     if(script[preferences[i]].groups[j].hasOwnProperty('desc') == true) desc = script[preferences[i]].groups[j].desc;
                     else desc = '该规则暂无描述';
-                    eachAppRules += tableInfo(appName, packageName, String(preferences[i]) + '.' + String(j), style, ruleName);
+                    eachAppRules += tableInfo(appName, packageName, String(preferences[i]) + '.' + String(j), style, ruleName, desc);
                 };
             }
             for(let i in secondaryOptions){
@@ -141,7 +141,7 @@ function search(){
                     else style = 'color: green;';
                     if(script[secondaryOptions[i]].groups[j].hasOwnProperty('desc') == true) desc = script[secondaryOptions[i]].groups[j].desc;
                     else desc = '该规则暂无描述';
-                    eachAppRules += tableInfo(appName, packageName, String(secondaryOptions[i]) + '.' + String(j), style, ruleName);
+                    eachAppRules += tableInfo(appName, packageName, String(secondaryOptions[i]) + '.' + String(j), style, ruleName, desc);
                 };
             }
             var ruleList = document.querySelector('tbody');
@@ -197,7 +197,7 @@ function getDetails(){
                 else style = 'color: green;';
                 if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
                 else desc = '该规则暂无描述';
-                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
+                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
             };
         };
         var ruleList = document.querySelector('tbody');
@@ -233,7 +233,7 @@ function readFile(){
                 else style = 'color: green;';
                 if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
                 else desc = '该规则暂无描述';
-                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName);
+                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
             };
         };
         var ruleList = document.querySelector('tbody');
@@ -256,7 +256,7 @@ function edit(location){
     };
 };
 
-function tableInfo(appName, packageName, id, style, ruleName){
+function tableInfo(appName, packageName, id, style, ruleName, desc){
     let result = `
     <tr>
         <td>${appName}</td>
