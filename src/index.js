@@ -154,17 +154,17 @@ function output(type){
     if(type == 'all'){
         delete fullScript.supportUri;
         delete fullScript.checkUpdateUrl;
-        fullScript['id'] = -2;
-        fullScript['name'] = '本地订阅';
-        fullScript['author'] = 'gkd';
-        fullScript['version'] = 0;
+        fullScript['id'] = 9999;
+        fullScript['name'] = '默认订阅-改';
+        fullScript['author'] = 'Adpro';
+        fullScript['version'] = 2;
         const blob = new Blob([JSON.stringify(fullScript)],{
             type: 'application/json'
         });
         const downloadURL = URL.createObjectURL(blob);
         const aTag = document.createElement('a');
         aTag.href = downloadURL;
-        aTag.download = '-2.json';
+        aTag.download = '9999.json';
         aTag.click();
         URL.revokeObjectURL(downloadURL);
     }
