@@ -154,18 +154,17 @@ function output(type){
     if(type == 'all'){
         delete fullScript.supportUri;
         delete fullScript.checkUpdateUrl;
-        fullScript['id'] = '9999';
+        fullScript['id'] = 9999;
         fullScript['name'] = '默认订阅-改';
         fullScript['author'] = 'Adpro';
-        fullScript['version'] = '1';
-        fullScript['desc'] = '由Adpro开发的“GKD默认订阅自定义规则开关工具”生成'
-        const blob = new Blob([JSON5.stringify(fullScript)],{
+        fullScript['version'] = 1;
+        const blob = new Blob([JSON.stringify(fullScript)],{
             type: 'application/json'
         });
         const downloadURL = URL.createObjectURL(blob);
         const aTag = document.createElement('a');
         aTag.href = downloadURL;
-        aTag.download = '9999.json5';
+        aTag.download = '9999.json';
         aTag.click();
         URL.revokeObjectURL(downloadURL);
     }
