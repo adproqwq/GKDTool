@@ -183,7 +183,7 @@ function getDetails(){
         fullScript = data;
         script = data.apps;
         document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
-        document.getElementById('codeVer').innerHTML = '当前程序版本：' + codeVer;
+        document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
         document.getElementById('appList').innerHTML = initTable;
         var eachAppRules = '';
         for(let i in data.apps){
@@ -219,7 +219,7 @@ function readFile(){
         fullScript = data;
         script = data.apps;
         document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
-        document.getElementById('codeVer').innerHTML = '当前程序版本：' + codeVer;
+        document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
         document.getElementById('appList').innerHTML = initTable;
         var eachAppRules = '';
         for(let i in data.apps){
