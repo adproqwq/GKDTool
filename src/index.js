@@ -165,7 +165,7 @@ function output(type){
         const downloadURL = URL.createObjectURL(blob);
         const aTag = document.createElement('a');
         aTag.href = downloadURL;
-        aTag.download = '默认订阅-改.json5';
+        aTag.download = '9999.json5';
         aTag.click();
         URL.revokeObjectURL(downloadURL);
     }
