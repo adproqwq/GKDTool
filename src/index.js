@@ -6,32 +6,58 @@ var initTable = `
             <th>包名</th>
             <th>规则组名称</th>
             <th>规则描述</th>
-            <th>操作</th>
+            <th>
+                <div>操作<div>
+                <button onclick="changeSwitch('all','on');">全部开启</button>
+                <button onclick="changeSwitch('all','off');">全部关闭</button>
+            </th>
         </tr>
     </thead>
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.7.1';
+const codeVer = 'beta-0.8.0';
 
 function changeSwitch(index,job){
-    var location = index.split('.');
-    var i = location[0], j = location[1];
-    if(job == 'on'){
-        if(script[i].groups[j].hasOwnProperty('enable') == true){
-            delete script[i].groups[j].enable;
-            document.getElementById(index).style.color = 'green';
-            alert('已打开');
+    if(index != 'all'){
+        let location = index.split('.');
+        let i = location[0], j = location[1];
+        if(job == 'on'){
+            if(script[i].groups[j].hasOwnProperty('enable') == true){
+                delete script[i].groups[j].enable;
+                document.getElementById(index).style.color = 'green';
+                alert('已开启');
+            }
+            else alert('该规则已经开启了');
         }
-        else alert('该规则已经打开了');
+        else if(job == 'off'){
+            if(script[i].groups[j].hasOwnProperty('enable') == true) alert('该规则已经关闭了');
+            else{
+                script[i].groups[j]['enable'] = 'false';
+                document.getElementById(index).style.color = 'red';
+                alert('已关闭');
+            }
+        }
     }
-    else if(job == 'off'){
-        if(script[i].groups[j].hasOwnProperty('enable') == true) alert('该规则已经关闭了');
-        else{
-            script[i].groups[j]['enable'] = 'false';
-            document.getElementById(index).style.color = 'red';
-            alert('已关闭');
+    else{
+        for(let i in script){
+            for(let j in script[i].groups){
+                if(script[i].groups[j].hasOwnProperty('enable') == true){
+                    if(job == 'on'){
+                        delete script[i].groups[j].enable;
+                        document.getElementById(String(i) + '.' + String(j)).style.color = 'green';
+                    }
+                }
+                else{
+                    if(job == 'off'){
+                        script[i].groups[j]['enable'] = 'false';
+                        document.getElementById(String(i) + '.' + String(j)).style.color = 'red';
+                    }
+                }
+            }
         }
+        if(job == 'on') alert('已全部开启！');
+        else alert('已全部关闭！');
     }
 };
 
@@ -263,7 +289,7 @@ function tableInfo(appName, packageName, id, style, ruleName, desc){
         <td id="${id}" style="${style}">${ruleName}</td>
         <td>${desc}</td>
         <td>
-            <button onclick="changeSwitch('${id}','on');">打开</button>
+            <button onclick="changeSwitch('${id}','on');">开启</button>
             <button onclick="changeSwitch('${id}','off');">关闭</button>
             <button onclick="edit('${id}');">编辑</button>
             <button onclick="output('${id}')">导出该规则</button>
