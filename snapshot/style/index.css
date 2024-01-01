@@ -1,0 +1,132 @@
+/* 删除默认项目符号 */
+ul, #\-1 {
+    list-style-type: none;
+}
+/* 从父 ul 中删除边距和填充 */
+#\-1 {
+    margin: 0;
+    padding: 0;
+}
+/* 设置插入符号/箭头的样式 */
+.caret {
+    cursor: pointer;
+    background: transparent;
+    border-width: 0px;
+    outline: none;
+}
+.caret-single {
+    cursor: pointer;
+    background: transparent;
+    border-width: 0px;
+    outline: none;
+}
+/* 使用 unicode 创建插入符号/箭头，并为其设置样式 */
+.caret:not(#single):before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+/* 单击时旋转插入符号/箭头图标 */
+.caret-down::before {
+    transform: rotate(90deg);
+}
+/* 隐藏嵌套列表 */
+.nested {
+    display: none;
+}
+/* 当用户单击插入符号/箭头时显示嵌套列表 */
+.active {
+    display: block;
+}
+
+#copyright-box {
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    z-index: 9999;
+}
+#copyright-footer.column {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 972px;
+    -webkit-box-shadow: 0 -1px 0 0 rgba(0,0,0,.05);
+    box-shadow: 0 -1px 0 0 rgba(0,0,0,.05);
+    padding: 24px 34px 20px;
+}
+#copyright-footer.column.small {
+    max-width: 760px;
+    min-width: auto;
+    padding: 16px 0 14px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#copyright-footer.column .footer-column-b {
+    margin-top: 8px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+#copyright-footer.column.small .footer-column-b {
+    margin-top: 10px;
+}
+#copyright-footer a {
+    text-decoration: none;
+    color: inherit;
+}
+#copyright-footer li, #csdn-copyright-footer ul {
+    list-style: none;
+}
+#copyright-footer.column .footer-column-b li {
+    font-size: 12px;
+    color: #999aaa;
+    height: 16px;
+    line-height: 16px;
+    margin: 4px 6px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+#copyright-footer.column.small .footer-column-b li {
+    margin: 2px 3px;
+}
+
+.infoBox {
+    z-index: 2; /* 设置在顶层 */
+    left: 0;
+    top: 0;
+    width: 300px;
+    overflow: auto;
+}
+/* 弹窗内容 */
+.infoBox-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+}
+table {
+    border-collapse: collapse;
+    width: 300px;
+    font-family: serif;
+}
+td {
+    empty-cells: show;
+    border: 1px solid dodgerblue;
+    padding: 8px;
+    table-layout: fixed;
+    width: 150px;
+}
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-right: 1px solid #FF901E;
+    background-color: dodgerblue;
+    color: #FF901E;
+}
