@@ -100,16 +100,32 @@ ul, #\-1 {
 }
 
 .infoBox {
+    display: none; /* 默认隐藏 */
+    position: fixed; /* 固定定位 */
     z-index: 2; /* 设置在顶层 */
     left: 0;
     top: 0;
-    width: 300px;
+    width: 100%;
+    height: 100%;
     overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 /* 弹窗内容 */
 .infoBox-content {
     background-color: #fefefe;
+    padding: 30px;
     margin: 15% auto;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 table {
     border-collapse: collapse;

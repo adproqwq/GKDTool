@@ -1,6 +1,3 @@
-var nodesSorted = {};
-var path = [];
-
 function readFile(){
     const objFile = document.getElementById('upload');
     if(objFile.value === ''){
@@ -42,7 +39,7 @@ function readFile(){
                 let toggler = document.getElementsByClassName("caret");
                 let btn = -1;
                 for(let i = 0;i < toggler.length;i++){
-                    toggler[i].addEventListener("click", function(e) {
+                    toggler[i].addEventListener('click',function(e){
                         if(e.target.id != 'single'){
                             this.parentElement.querySelector(".nested").classList.toggle("active");
                             this.classList.toggle("caret-down");
@@ -70,7 +67,13 @@ function readFile(){
                         document.getElementById('index').innerText = String(nodes[i].attr.index);
                         btn = i;
                     });
+                    toggler[i].addEventListener('dblclick',function(e){
+                        document.getElementById('infoBox').style.display = 'flex';
+                    });
                 }
+                document.querySelector('.close').onclick = function(){
+                    document.getElementById('infoBox').style.display = 'none';
+                };
                 /*const blob = new Blob([JSON.stringify(nodesSorted)],{
                     type: 'application/json'
                 });
