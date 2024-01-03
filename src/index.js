@@ -267,8 +267,8 @@ function readFile(){
 };
 
 function edit(location){
-    var i = location.split('.')[0];
-    var j = location.split('.')[1];
+    let i = location.split('.')[0];
+    let j = location.split('.')[1];
     document.getElementById('content').value = JSON5.stringify(script[i].groups[j],null,2);
     document.getElementById('edit').style.display = 'block';
     document.querySelector('.close').onclick = function(){
@@ -281,11 +281,21 @@ function edit(location){
     };
 };
 
+function copyPackageName(location){
+    let i = location.split('.')[0];
+    navigator.clipboard.writeText(JSON5.stringify(script[i].id)).then(() => {
+        alert('已复制到剪切板');
+    });
+};
+
 function tableInfo(appName, packageName, id, style, ruleName, desc){
     let result = `
     <tr>
         <td>${appName}</td>
-        <td>${packageName}</td>
+        <td>
+            ${packageName}
+            <button onclick="copyPackageName('${id}');">复制</button>
+        </td>
         <td id="${id}" style="${style}">${ruleName}</td>
         <td>${desc}</td>
         <td>
