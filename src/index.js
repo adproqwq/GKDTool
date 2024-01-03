@@ -16,7 +16,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.8.0';
+const codeVer = 'beta-0.9.0';
 
 function changeSwitch(index,job){
     if(index != 'all'){
