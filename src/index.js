@@ -283,7 +283,7 @@ function edit(location){
 
 function copyPackageName(location){
     let i = location.split('.')[0];
-    navigator.clipboard.writeText(JSON5.stringify(script[i].id)).then(() => {
+    navigator.clipboard.writeText(JSON5.stringify(script[i].id).slice(1,-1)).then(() => {
         alert('已复制到剪切板');
     });
 };
