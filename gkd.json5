@@ -1,7 +1,7 @@
 {
   id: 0,
   name: "默认订阅",
-  version: 180,
+  version: 182,
   author: "lisonge",
   supportUri: "https://github.com/gkd-kit/subscription",
   checkUpdateUrl: "https://registry.npmmirror.com/@gkd-kit/subscription/latest/files/dist/gkd.version.json",
@@ -22,20 +22,22 @@
         },
         {
           key: -1,
-          matches: '[childCount=0][visibleToUser=true][(text.length<10&&(text*="跳过"||text*="跳過"||text*="skip"||text*="Skip"||text^="关闭")) || id$="tt_splash_skip_btn" || vid*="skip" || vid*="Skip" || (vid*="count" && vid*="down") || desc*="跳过" || desc*="skip"]',
+          matches: '[childCount=0][visibleToUser=true][(text.length<10&&(text*="跳过"||text*="跳過"||text*="skip"||text*="Skip")) || id$="tt_splash_skip_btn" || vid*="skip" || vid*="Skip" || (vid*="count" && vid*="down") || desc*="跳过" || desc*="skip"]',
         },
       ],
       apps: [
         { id: "com.android.systemui", enable: false },
+        { id: "com.android.settings", enable: false },
         { id: "com.miui.aod", enable: false },
         { id: "com.miui.home", enable: false },
-        { id: "com.android.launcher.Launcher", enable: false },
+        { id: "com.android.launcher", enable: false },
         { id: "com.bbk.launcher2.Launcher", enable: false },
         {
           id: "com.huawei.android.launcher.unihome.UniHomeLauncher",
           enable: false,
         },
         { id: "com.tencent.mm", enable: false },
+        { id: "li.songe.gkd", enable: false },
         { id: "com.eco.global.app", enable: false },
         { id: "com.ksf.yyx", enable: false },
         { id: "com.cyl.musiccy.ou", enable: false },
