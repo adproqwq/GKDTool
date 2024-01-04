@@ -16,7 +16,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.9.2';
+const codeVer = '1.0.0';
 
 function changeSwitch(index,job){
     if(index != 'all'){
@@ -199,13 +199,24 @@ function output(type){
         fullScript['name'] = '默认订阅-改';
         fullScript['author'] = 'Adpro';
         fullScript['version'] = 2;
-        const blob = new Blob([JSON.stringify(fullScript)],{
-            type: 'application/json'
-        });
+        let userSelect = document.getElementById('outputMode');
+        let index = userSelect.selectedIndex;
+        let blob;
+        if(userSelect.options[index].value == 'json'){
+            blob = new Blob([JSON.stringify(fullScript)],{
+                type: 'application/json'
+            });
+        }
+        else if(userSelect.options[index].value == 'json5'){
+            blob = new Blob([JSON5.stringify(fullScript)],{
+                type: 'application/json'
+            });
+        }
         const downloadURL = URL.createObjectURL(blob);
         const aTag = document.createElement('a');
         aTag.href = downloadURL;
-        aTag.download = '9999.json';
+        if(userSelect.options[index].value == 'json') aTag.download = '9999.json';
+        else if(userSelect.options[index].value == 'json5') aTag.download = '9999.json5';
         aTag.click();
         URL.revokeObjectURL(downloadURL);
     }
