@@ -16,14 +16,14 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.9.0';
+const codeVer = 'beta-0.9.1';
 
 function changeSwitch(index,job){
     if(index != 'all'){
         let location = index.split('.');
         let i = location[0], j = location[1];
         if(job == 'on'){
-            if(script[i].groups[j].hasOwnProperty('enable') == true){
+            if(document.getElementById(index).style.color == 'red'){
                 delete script[i].groups[j].enable;
                 document.getElementById(index).style.color = 'green';
                 alert('已开启');
@@ -31,7 +31,7 @@ function changeSwitch(index,job){
             else alert('该规则已经开启了');
         }
         else if(job == 'off'){
-            if(script[i].groups[j].hasOwnProperty('enable') == true) alert('该规则已经关闭了');
+            if(document.getElementById(index).style.color == 'red') alert('该规则已经关闭了');
             else{
                 script[i].groups[j]['enable'] = 'false';
                 document.getElementById(index).style.color = 'red';
@@ -42,7 +42,7 @@ function changeSwitch(index,job){
     else{
         for(let i in script){
             for(let j in script[i].groups){
-                if(script[i].groups[j].hasOwnProperty('enable') == true){
+                if(document.getElementById(String(i) + '.' + String(j)).style.color == 'red'){
                     if(job == 'on'){
                         delete script[i].groups[j].enable;
                         document.getElementById(String(i) + '.' + String(j)).style.color = 'green';
@@ -74,7 +74,10 @@ function search(){
             appName = script[i].name;
             for(let j in script[i].groups){
                 ruleName = script[i].groups[j].name;
-                if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                if(script[i].groups[j].hasOwnProperty('enable') == true){
+                    if(script[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                    else style = 'color: green;';
+                }
                 else style = 'color: green;';
                 if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
                 else desc = '该规则暂无描述';
@@ -96,7 +99,10 @@ function search(){
                                 packageName = script[i].id;
                                 appName = script[i].name;
                                 ruleName = script[i].groups[j].name;
-                                if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                                if(script[i].groups[j].hasOwnProperty('enable') == true){
+                                    if(script[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                                    else style = 'color: green;';
+                                }
                                 else style = 'color: green;';
                                 if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
                                 else desc = '该规则暂无描述';
@@ -117,7 +123,10 @@ function search(){
                             packageName = script[i].id;
                             appName = script[i].name;
                             ruleName = script[i].groups[j].name;
-                            if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                            if(script[i].groups[j].hasOwnProperty('enable') == true){
+                                if(script[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                                else style = 'color: green;';
+                            }
                             else style = 'color: green;';
                             if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
                             else desc = '该规则暂无描述';
@@ -151,7 +160,10 @@ function search(){
                 appName = script[preferences[i]].name;
                 for(let j in script[preferences[i]].groups){
                     ruleName = script[preferences[i]].groups[j].name;
-                    if(script[preferences[i]].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                    if(script[preferences[i]].groups[j].hasOwnProperty('enable') == true){
+                        if(script[preferences[i]].groups[j]['enable'] == 'false') style = 'color: red;';
+                        else style = 'color: green;';
+                    }
                     else style = 'color: green;';
                     if(script[preferences[i]].groups[j].hasOwnProperty('desc') == true) desc = script[preferences[i]].groups[j].desc;
                     else desc = '该规则暂无描述';
@@ -163,7 +175,10 @@ function search(){
                 appName = script[secondaryOptions[i]].name;
                 for(let j in script[secondaryOptions[i]].groups){
                     ruleName = script[secondaryOptions[i]].groups[j].name;
-                    if(script[secondaryOptions[i]].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                    if(script[secondaryOptions[i]].groups[j].hasOwnProperty('enable') == true){
+                        if(script[secondaryOptions[i]].groups[j]['enable'] == 'false') style = 'color: red;';
+                        else style = 'color: green;';
+                    }
                     else style = 'color: green;';
                     if(script[secondaryOptions[i]].groups[j].hasOwnProperty('desc') == true) desc = script[secondaryOptions[i]].groups[j].desc;
                     else desc = '该规则暂无描述';
@@ -218,7 +233,10 @@ function getDetails(){
             appName = data.apps[i].name;
             for(let j in data.apps[i].groups){
                 ruleName = data.apps[i].groups[j].name;
-                if(data.apps[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                if(data.apps[i].groups[j].hasOwnProperty('enable') == true){
+                    if(data.apps[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                    else style = 'color: green;';
+                }
                 else style = 'color: green;';
                 if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
                 else desc = '该规则暂无描述';
@@ -254,7 +272,10 @@ function readFile(){
             appName = data.apps[i].name;
             for(let j in data.apps[i].groups){
                 ruleName = data.apps[i].groups[j].name;
-                if(script[i].groups[j].hasOwnProperty('enable') == true) style = 'color: red;';
+                if(script[i].groups[j].hasOwnProperty('enable') == true){
+                    if(script[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                    else style = 'color: green;';
+                }
                 else style = 'color: green;';
                 if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
                 else desc = '该规则暂无描述';
