@@ -16,7 +16,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = 'beta-0.9.1';
+const codeVer = 'beta-0.9.2';
 
 function changeSwitch(index,job){
     if(index != 'all'){
@@ -75,7 +75,7 @@ function search(){
             for(let j in script[i].groups){
                 ruleName = script[i].groups[j].name;
                 if(script[i].groups[j].hasOwnProperty('enable') == true){
-                    if(script[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                    if(script[i].groups[j]['enable'] == false) style = 'color: red;';
                     else style = 'color: green;';
                 }
                 else style = 'color: green;';
@@ -100,7 +100,7 @@ function search(){
                                 appName = script[i].name;
                                 ruleName = script[i].groups[j].name;
                                 if(script[i].groups[j].hasOwnProperty('enable') == true){
-                                    if(script[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                                    if(script[i].groups[j]['enable'] == false) style = 'color: red;';
                                     else style = 'color: green;';
                                 }
                                 else style = 'color: green;';
@@ -124,7 +124,7 @@ function search(){
                             appName = script[i].name;
                             ruleName = script[i].groups[j].name;
                             if(script[i].groups[j].hasOwnProperty('enable') == true){
-                                if(script[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                                if(script[i].groups[j]['enable'] == false) style = 'color: red;';
                                 else style = 'color: green;';
                             }
                             else style = 'color: green;';
@@ -161,7 +161,7 @@ function search(){
                 for(let j in script[preferences[i]].groups){
                     ruleName = script[preferences[i]].groups[j].name;
                     if(script[preferences[i]].groups[j].hasOwnProperty('enable') == true){
-                        if(script[preferences[i]].groups[j]['enable'] == 'false') style = 'color: red;';
+                        if(script[preferences[i]].groups[j]['enable'] == false) style = 'color: red;';
                         else style = 'color: green;';
                     }
                     else style = 'color: green;';
@@ -176,7 +176,7 @@ function search(){
                 for(let j in script[secondaryOptions[i]].groups){
                     ruleName = script[secondaryOptions[i]].groups[j].name;
                     if(script[secondaryOptions[i]].groups[j].hasOwnProperty('enable') == true){
-                        if(script[secondaryOptions[i]].groups[j]['enable'] == 'false') style = 'color: red;';
+                        if(script[secondaryOptions[i]].groups[j]['enable'] == false) style = 'color: red;';
                         else style = 'color: green;';
                     }
                     else style = 'color: green;';
@@ -234,7 +234,7 @@ function getDetails(){
             for(let j in data.apps[i].groups){
                 ruleName = data.apps[i].groups[j].name;
                 if(data.apps[i].groups[j].hasOwnProperty('enable') == true){
-                    if(data.apps[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                    if(data.apps[i].groups[j]['enable'] == false) style = 'color: red;';
                     else style = 'color: green;';
                 }
                 else style = 'color: green;';
@@ -273,7 +273,7 @@ function readFile(){
             for(let j in data.apps[i].groups){
                 ruleName = data.apps[i].groups[j].name;
                 if(script[i].groups[j].hasOwnProperty('enable') == true){
-                    if(script[i].groups[j]['enable'] == 'false') style = 'color: red;';
+                    if(script[i].groups[j]['enable'] == false) style = 'color: red;';
                     else style = 'color: green;';
                 }
                 else style = 'color: green;';
