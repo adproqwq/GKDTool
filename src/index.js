@@ -33,7 +33,7 @@ function changeSwitch(index,job){
         else if(job == 'off'){
             if(document.getElementById(index).style.color == 'red') alert('该规则已经关闭了');
             else{
-                script[i].groups[j]['enable'] = 'false';
+                script[i].groups[j]['enable'] = false;
                 document.getElementById(index).style.color = 'red';
                 alert('已关闭');
             }
