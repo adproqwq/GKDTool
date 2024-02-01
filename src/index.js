@@ -193,12 +193,6 @@ function search(){
 
 function output(type){
     if(type == 'all'){
-        delete fullScript.supportUri;
-        delete fullScript.checkUpdateUrl;
-        fullScript['id'] = 9999;
-        fullScript['name'] = '默认订阅-改';
-        fullScript['author'] = 'Adpro';
-        fullScript['version'] = 2;
         let userSelect = document.getElementById('outputMode');
         let index = userSelect.selectedIndex;
         let blob;
@@ -215,8 +209,8 @@ function output(type){
         const downloadURL = URL.createObjectURL(blob);
         const aTag = document.createElement('a');
         aTag.href = downloadURL;
-        if(userSelect.options[index].value == 'json') aTag.download = '9999.json';
-        else if(userSelect.options[index].value == 'json5') aTag.download = '9999.json5';
+        if(userSelect.options[index].value == 'json') aTag.download = `${fullScript.id}.json`;
+        else if(userSelect.options[index].value == 'json5') aTag.download = `${fullScript.id}.json5`;
         aTag.click();
         URL.revokeObjectURL(downloadURL);
     }
@@ -335,6 +329,7 @@ function switchStatus(type){
                 return
             }
         }
+        alert('一字不落地还原了！');
         script = JSON5.parse(localStorage.getItem(String(fullScript.id)));
         fullScript.apps = script;
         document.getElementById('subVer').innerHTML = '<span>订阅版本：' + fullScript.version + '</span>';
