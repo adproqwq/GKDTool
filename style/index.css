@@ -1,40 +1,29 @@
 .btn {
-    width: 120px;
-    height: 40px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
+    color: #0099CC; /* 文字颜色 */
+    background: transparent; /* 清除背景色 */
+    border: 2px solid #0099CC; /* 边框样式、颜色、宽度 */
+    border-radius: 6px; /* 给边框添加圆角 */
+    border: none;
+    /*color: white;*/
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
     cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    border-radius: 20px;
-    box-sizing: border-box;
-    letter-spacing: 3px;
+    text-decoration: none;
 }
-.boom {
-    background-color: #16a085;
-    color: #fff;
-    position: relative;
-    z-index: 1;
+.btn1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
 }
-.boom::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    border: 2px solid #16a085;
-    border-radius: 20px;
-    transform-origin: center;
-}
-.boom:hover::before {
-    transform: scale(1.25);
-    transition: all ease-out .5s;
-    border: 1px solid #96f3e0;
-    opacity: 0;
+/* 悬停样式 */
+.btn1:hover {
+    background-color: #008CBA;
+    color: white;
 }
 
 #copyright-box {
