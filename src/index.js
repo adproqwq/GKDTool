@@ -16,7 +16,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = '1.0.0';
+const codeVer = '1.1.0';
 
 function changeSwitch(index,job){
     if(index != 'all'){
@@ -322,18 +322,13 @@ function copyPackageName(location){
 
 function switchStatus(type){
     if(type == 'memorize'){
-        try{
-            let result = localStorage.setItem(String(fullScript.id), JSON5.stringify(script).slice(1,-1));
-            throw result
-        } catch (error){
-            alert('啊哦，记不下了');
-            return
-        }
+        localStorage.setItem(String(fullScript.id), JSON5.stringify(script));
+        alert('全部都记下来了！');
     }
     else if(type == 'read'){
         try{
-            script = localStorage.getItem(String(fullScript.id));
-            throw script;
+            let result = localStorage.getItem(String(fullScript.id));
+            throw result;
         } catch (error){
             if(error == null){
                 alert('我的脑子里似乎没有这方面的记忆');
