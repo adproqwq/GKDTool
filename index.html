@@ -11,7 +11,7 @@
             <input id="name" placeholder="请输入应用名或包名以搜索" onkeydown="if(event.keyCode == 13) search();">
         </div>
         <div>
-            <button type="button" class="btn boom" onclick="output('all');">导出全部</button>
+            <button type="button" class="btn btn1" onclick="output('all');">导出全部</button>
             <span>导出格式：</span>
             <select id="outputMode">
                 <option value="json">JSON</option>
@@ -21,6 +21,10 @@
         <div>
             <span>导入外部订阅文件：</span>
             <input id="upload" type="file" accept=".json5, application/json" onchange="readFile();">
+        </div>
+        <div id="switchStatus">
+            <button type="button" class="btn btn1" onclick="switchStatus('memorize');">记忆当前订阅开关状态</button>
+            <button type="button" class="btn btn1" onclick="switchStatus('read');">读取当前订阅开关状态</button>
         </div>
         <div id="version">
             <div id="subVer"></div>

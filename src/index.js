@@ -84,7 +84,7 @@ function search(){
                 eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
             };
         };
-        var ruleList = document.querySelector('tbody');
+        let ruleList = document.querySelector('tbody');
         ruleList.innerHTML = eachAppRules;
     }
     else{
@@ -111,7 +111,7 @@ function search(){
                         }
                     }
                 }
-                var ruleList = document.querySelector('tbody');
+                let ruleList = document.querySelector('tbody');
                 ruleList.innerHTML = eachAppRules;
             }
             else if(target.split(' ').length == 2){
@@ -134,7 +134,7 @@ function search(){
                         }
                     }
                 }
-                var ruleList = document.querySelector('tbody');
+                let ruleList = document.querySelector('tbody');
                 ruleList.innerHTML = eachAppRules;
             }
             else if(target.split(' ').length == 1) alert('命令非法！');
@@ -185,7 +185,7 @@ function search(){
                     eachAppRules += tableInfo(appName, packageName, String(secondaryOptions[i]) + '.' + String(j), style, ruleName, desc);
                 };
             }
-            var ruleList = document.querySelector('tbody');
+            let ruleList = document.querySelector('tbody');
             ruleList.innerHTML = eachAppRules;
         }
     }
@@ -254,7 +254,7 @@ function getDetails(){
                 eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
             };
         };
-        var ruleList = document.querySelector('tbody');
+        let ruleList = document.querySelector('tbody');
         ruleList.innerHTML = eachAppRules;
     });
 };
@@ -293,7 +293,7 @@ function readFile(){
                 eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
             };
         };
-        var ruleList = document.querySelector('tbody');
+        let ruleList = document.querySelector('tbody');
         ruleList.innerHTML = eachAppRules;
     }
 };
@@ -319,6 +319,44 @@ function copyPackageName(location){
         alert('已复制到剪切板');
     });
 };
+
+function switchStatus(type){
+    if(type == 'memorize') localStorage.setItem(String(fullScript.id), JSON5.stringify(script));
+    else if(type == 'read'){
+        try{
+            script = localStorage.getItem(String(fullScript.id));
+            throw script;
+        } catch (error){
+            if(error == null){
+                alert('我的脑子里似乎没有这方面的记忆');
+                return
+            }
+        }
+        fullScript.apps = script;
+        document.getElementById('subVer').innerHTML = '<span>订阅版本：' + fullScript.version + '</span>';
+        document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
+        document.getElementById('appList').innerHTML = initTable;
+        var eachAppRules = '';
+        for(let i in script){
+            var packageName, appName, ruleName, desc, style;
+            packageName = script[i].id;
+            appName = script[i].name;
+            for(let j in script[i].groups){
+                ruleName = script[i].groups[j].name;
+                if(script[i].groups[j].hasOwnProperty('enable') == true){
+                    if(script[i].groups[j]['enable'] == false) style = 'color: red;';
+                    else style = 'color: green;';
+                }
+                else style = 'color: green;';
+                if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
+                else desc = '该规则暂无描述';
+                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
+            };
+        };
+        let ruleList = document.querySelector('tbody');
+        ruleList.innerHTML = eachAppRules;
+    }
+}
 
 function tableInfo(appName, packageName, id, style, ruleName, desc){
     let result = `
