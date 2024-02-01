@@ -1,14 +1,16 @@
 {
   id: 0,
   name: "默认订阅",
-  version: 184,
+  version: 185,
   author: "lisonge",
   supportUri: "https://github.com/gkd-kit/subscription",
+  updateUrl: "https://registry.npmmirror.com/@gkd-kit/subscription/latest/files",
   checkUpdateUrl: "https://registry.npmmirror.com/@gkd-kit/subscription/latest/files/dist/gkd.version.json",
   globalGroups: [
     {
       key: 0,
       name: "开屏广告",
+      order: -1,
       actionMaximum: 2,
       matchTime: 10000,
       resetMatch: "app",
@@ -37,6 +39,7 @@
         { id: "com.mmbox.xbrowser", enable: false },
         { id: "info.muge.appshare", enable: false },
         { id: "net.csdn.csdnplus", enable: false },
+        { id: "make.more.r2d2.cellular_z", enable: false },
         { id: "com.eco.global.app", enable: false },
         { id: "com.superrhino.rarering", enable: false },
         { id: "com.ksf.yyx", enable: false },
@@ -44,8 +47,10 @@
         { id: "com.picacomic.fregata", enable: false },
         { id: "com.tencent.mobileqq", enable: false },
         { id: "cn.soulapp.android", enable: false },
+        { id: "com.taptap", enable: false },
         { id: "com.dubox.drive", enable: false },
         { id: "dxwt.questionnaire.ui", enable: false },
+        { id: "com.mfcloudcalculate.networkdisk", enable: false },
         { id: "com.dfsly.bbs", enable: false },
         { id: "com.chunqiu.ah", enable: false },
         { id: "gov.pianzong.androidnga", enable: false },
@@ -65,7 +70,9 @@
         { id: "com.kuangxiangciweimao.novel", enable: false },
         { id: "cn.damai", enable: false },
         { id: "com.delicloud.app.smartoffice", enable: false },
+        { id: "com.zlfcapp.batterymanager", enable: false },
         { id: "com.dianxinai.mobile", enable: false },
+        { id: "com.didapinche.booking", enable: false },
         { id: "com.citiccard.mobilebank", enable: false },
         { id: "com.dongqiudi.news", enable: false },
         { id: "com.diershoubing.erbing", enable: false },
@@ -84,9 +91,11 @@
         { id: "com.kkeji.news.client", enable: false },
         { id: "com.coolapk.market", enable: false },
         { id: "com.kugou.android", enable: false },
+        { id: "com.ecellsz.watch.guard", enable: false },
         { id: "com.hxak.liangongbao", enable: false },
         { id: "com.manmanbuy.bijia", enable: false },
         { id: "com.antfortune.wealth", enable: false },
+        { id: "com.paokeji.yiqu", enable: false },
         { id: "com.motoband", enable: false },
         { id: "com.mostone.life", enable: false },
         { id: "com.nowcoder.app.florida", enable: false },
@@ -99,10 +108,13 @@
         { id: "com.flyersoft.seekbooks", enable: false },
         { id: "com.mymoney", enable: false },
         { id: "com.taobao.taobao", enable: false },
+        { id: "com.leixun.taofen8", enable: false },
         { id: "com.taobao.litetao", enable: false },
         { id: "com.tencent.qqlive", enable: false },
+        { id: "com.tencent.qqsports", enable: false },
         { id: "com.qq.qcloud", enable: false },
         { id: "com.tencent.docs", enable: false },
+        { id: "com.wacai365", enable: false },
         { id: "com.waimaiii.waimaiii", enable: false },
         { id: "cn.lezhi.speedtest", enable: false },
         { id: "com.netease.mobimail", enable: false },
@@ -111,6 +123,7 @@
         { id: "com.realtech.xiaocan", enable: false },
         { id: "com.xiaoenai.app", enable: false },
         { id: "com.craftvpn.craft", enable: false },
+        { id: "com.xiaote", enable: false },
         { id: "moc.nauxuoyoaixoaix.www", enable: false },
         { id: "com.firebear.androil", enable: false },
         { id: "me.zhouzhuo810.zznote", enable: false },
@@ -121,6 +134,7 @@
         { id: "com.zgnet.eClass", enable: false },
         { id: "com.zhihu.android", enable: false },
         { id: "com.crirp.zhipu", enable: false },
+        { id: "cn.mil.junhao", enable: false },
       ],
     },
   ],
@@ -273,7 +287,14 @@
               matches: '@View <3 FrameLayout <2 FrameLayout < FrameLayout < [vid="rlAdView"]',
               snapshotUrls: "https://i.gkd.li/import/13842826",
             },
+            {
+              key: 3,
+              name: "穿山甲SDK",
+              matches: '@View[clickable=true] <<n [vid="tp_splash_container_id"]',
+              snapshotUrls: "https://i.gkd.li/import/13939089",
+            },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -411,6 +432,7 @@
               snapshotUrls: "https://i.gkd.li/import/13224627",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -542,8 +564,38 @@
       name: "Cellular-Z",
       groups: [
         {
+          key: 0,
+          name: "开屏广告",
+          resetMatch: "app",
+          actionMaximum: 1,
+          matchTime: 10000,
+          actionCdKey: 0,
+          actionMaximumKey: 0,
+          rules: [
+            {
+              key: 0,
+              quickFind: true,
+              name: "全局规则-1",
+              matches: '[text*="跳过"][text.length<=10]',
+              snapshotUrls: "https://i.gkd.li/import/13987038",
+            },
+            {
+              key: 1,
+              name: "字节广告SDK",
+              matches: "TextView - @View[clickable=true] <n FrameLayout <2 FrameLayout[childCount=2]",
+              snapshotUrls: "https://i.gkd.li/import/13978978",
+            },
+            {
+              key: 2,
+              name: "全局规则-2",
+              matches: '[childCount=0][visibleToUser=true][(text.length<10&&(text*="跳过"||text*="跳過"||text*="skip"||text*="Skip")) || id$="tt_splash_skip_btn" || vid*="skip" || vid*="Skip" || (vid*="count" && vid*="down" && vid!*="download") || desc*="跳过" || desc*="skip"]',
+            },
+          ],
+          order: -1,
+        },
+        {
           key: 2,
-          name: "更新弹窗",
+          name: "更新提示",
           resetMatch: "app",
           actionMaximum: 1,
           matchTime: 10000,
@@ -574,6 +626,7 @@
           resetMatch: "app",
           rules: 'ImageView[id="com.eco.global.app:id/adview_jump"]',
           snapshotUrls: "https://i.gkd.li/import/13538616",
+          order: -1,
         },
       ],
     },
@@ -913,6 +966,7 @@
               snapshotUrls: "https://i.gkd.li/import/13853858",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -938,6 +992,7 @@
               snapshotUrls: "https://i.gkd.li/import/12775926",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -1029,6 +1084,7 @@
               snapshotUrls: ["https://i.gkd.li/import/12775919"],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -1187,6 +1243,7 @@
               snapshotUrls: ["https://i.gkd.li/import/13422624"],
             },
           ],
+          order: -1,
         },
         {
           key: 2,
@@ -1320,6 +1377,7 @@
             "https://i.gkd.li/import/13856647",
             "https://i.gkd.li/import/13868177",
           ],
+          order: -1,
         },
         {
           enable: false,
@@ -1838,6 +1896,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -1946,6 +2005,17 @@
       name: "TapTap",
       groups: [
         {
+          key: 1,
+          name: "开屏广告",
+          rules: [
+            {
+              matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
+              snapshotUrls: ["https://i.gkd.li/import/13946250"],
+            },
+          ],
+          order: -1,
+        },
+        {
           key: 2,
           name: "游戏浏览界面-推荐广告",
           desc: "自动点击【对此内容不感兴趣】",
@@ -2041,6 +2111,7 @@
               snapshotUrls: "https://i.gkd.li/import/13688384",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -2548,6 +2619,7 @@
             "https://i.gkd.li/import/13255491",
             "https://i.gkd.li/import/13259475",
           ],
+          order: -1,
         },
       ],
     },
@@ -2557,7 +2629,7 @@
       groups: [
         {
           key: 1,
-          name: "应用内广告弹窗",
+          name: "全屏广告-应用内广告弹窗",
           activityIds: "com.mfcloudcalculate.networkdisk.activity.AdFreeActivity",
           matchTime: 10000,
           actionMaximum: 1,
@@ -2566,6 +2638,40 @@
           rules: '[text*="关闭"][id="com.mfcloudcalculate.networkdisk:id/tv_ad_free_colse"]',
           snapshotUrls: "https://i.gkd.li/import/13546173",
           enable: false,
+        },
+        {
+          key: 2,
+          name: "开屏广告",
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: "app",
+          rules: [
+            {
+              key: 0,
+              quickFind: true,
+              matches: 'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true] + TextView <<n [id="com.mfcloudcalculate.networkdisk:id/frame_ad_splash_container"]',
+              snapshotUrls: "https://i.gkd.li/import/14018247",
+            },
+            {
+              key: 1,
+              quickFind: true,
+              matches: '[id="com.mfcloudcalculate.networkdisk:id/frame_ad_splash_container"] >n [text^="跳过"][text.length<=4]',
+              snapshotUrls: [
+                "https://i.gkd.li/import/12846434",
+                "https://i.gkd.li/import/13059834",
+              ],
+            },
+            {
+              key: 2,
+              quickFind: true,
+              matches: '[id$="tt_splash_skip_btn"] <<n [id="com.mfcloudcalculate.networkdisk:id/frame_ad_splash_container"]',
+              snapshotUrls: [
+                "https://i.gkd.li/import/13259303",
+                "https://i.gkd.li/import/13695497",
+              ],
+            },
+          ],
+          order: -1,
         },
       ],
     },
@@ -2810,6 +2916,7 @@
               snapshotUrls: "https://i.gkd.li/import/13330351",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -2856,6 +2963,7 @@
               snapshotUrls: "https://i.gkd.li/import/13264377",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -3335,6 +3443,7 @@
             "https://i.gkd.li/import/12911882",
             "https://i.gkd.li/import/13798686",
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -3663,6 +3772,7 @@
             },
             "@View[id=null] + ImageView + FrameLayout TextView[text=`向上滑动或点击查看`]",
           ],
+          order: -1,
         },
         {
           enable: false,
@@ -3793,8 +3903,9 @@
           matchTime: 10000,
           actionMaximum: 1,
           resetMatch: "app",
-          rules: "RelativeLayout > ImageView[id!=null] + ImageView[id!=null]",
+          rules: "RelativeLayout[childCount=3] > ImageView + @ImageView[clickable=true][visibleToUser=true] + FrameLayout[childCount>0]",
           snapshotUrls: "https://i.gkd.li/import/12775855",
+          order: -1,
         },
         {
           key: 0,
@@ -3884,6 +3995,7 @@
               snapshotUrls: "https://i.gkd.li/import/13197655",
             },
           ],
+          order: -1,
         },
         {
           key: 0,
@@ -3941,8 +4053,28 @@
           matchTime: 10000,
           resetMatch: "app",
           actionMaximum: 1,
-          rules: '[id="android:id/content"] >n FrameLayout[childCount=4] > View',
-          snapshotUrls: "https://i.gkd.li/import/13830230",
+          rules: "FrameLayout > FrameLayout[childCount>2] > @View[clickable=true] + TextView",
+          snapshotUrls: [
+            "https://i.gkd.li/import/13830230",
+            "https://i.gkd.li/import/14052232",
+          ],
+          order: -1,
+        },
+        {
+          key: 1,
+          name: "青少年模式",
+          desc: '点击"我知道了"',
+          matchTime: 10000,
+          resetMatch: "app",
+          actionMaximum: 1,
+          rules: [
+            {
+              activityIds: "com.upupoo.apu.mobile.MainActivity",
+              matches: '[desc="青少年模式"] +3 [desc="我知道了"]',
+              snapshotUrls: "https://i.gkd.li/import/14052188",
+            },
+          ],
+          enable: false,
         },
       ],
     },
@@ -3959,6 +4091,7 @@
           resetMatch: "app",
           rules: '[text*="跳过"][text.length<=10]',
           snapshotUrls: "https://i.gkd.li/import/13407199",
+          order: -1,
         },
       ],
     },
@@ -4273,6 +4406,7 @@
             "https://i.gkd.li/import/13160866",
             "https://i.gkd.li/import/13379565",
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -4356,6 +4490,7 @@
           actionMaximum: 1,
           rules: '[text*="关闭"] <2 LinearLayout',
           snapshotUrls: "https://i.gkd.li/import/13797162",
+          order: -1,
         },
       ],
     },
@@ -4372,6 +4507,7 @@
           resetMatch: "app",
           rules: '[text*="关闭"][text.length<=10]',
           snapshotUrls: "https://i.gkd.li/import/13407227",
+          order: -1,
         },
       ],
     },
@@ -4535,6 +4671,7 @@
           resetMatch: "app",
           rules: '[id="com.shanghaionstar:id/jump_view"]',
           snapshotUrls: "https://i.gkd.li/import/13071523",
+          order: -1,
         },
       ],
     },
@@ -4814,6 +4951,7 @@
               snapshotUrls: "https://i.gkd.li/import/13168386",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -5230,6 +5368,7 @@
               snapshotUrls: "https://i.gkd.li/import/13800021",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -5416,6 +5555,7 @@
           resetMatch: "app",
           rules: '[id="tv.danmaku.bili:id/count_down"][text^="跳"]',
           snapshotUrls: "https://i.gkd.li/import/12705270",
+          order: -1,
         },
         {
           key: 0,
@@ -5629,6 +5769,7 @@
           quickFind: true,
           rules: '[id="tv.danmaku.bilibilihd:id/count_down"]',
           snapshotUrls: "https://i.gkd.li/import/13031261",
+          order: -1,
         },
         {
           key: 1,
@@ -6198,6 +6339,7 @@
           activityIds: "com.kuangxiangciweimao.novel.activity.AdvertisementActivity",
           rules: '[id="com.kuangxiangciweimao.novel:id/mTasksView"]',
           snapshotUrls: "https://i.gkd.li/import/13056248",
+          order: -1,
         },
       ],
     },
@@ -6266,6 +6408,7 @@
           resetMatch: "app",
           rules: '[id="cn.damai:id/homepage_advert_pb"]',
           snapshotUrls: "https://i.gkd.li/import/12472623",
+          order: -1,
         },
         {
           key: 1,
@@ -6708,12 +6851,20 @@
         {
           key: 0,
           name: "开屏广告",
-          quickFind: true,
           matchTime: 10000,
           actionMaximum: 1,
           resetMatch: "app",
-          rules: '@View[clickable=true] <2 FrameLayout <2 FrameLayout <<2 FrameLayout[id="com.delicloud.app.smartoffice:id/splash_container"]',
-          snapshotUrls: ["https://i.gkd.li/import/13840775"],
+          rules: [
+            {
+              quickFind: true,
+              matches: 'FrameLayout > FrameLayout[childCount>2] > @View[clickable=true] + TextView <<n [vid="splash_container"]',
+              snapshotUrls: [
+                "https://i.gkd.li/import/13840775",
+                "https://i.gkd.li/import/13944086",
+              ],
+            },
+          ],
+          order: -1,
         },
       ],
     },
@@ -6755,6 +6906,27 @@
       ],
     },
     {
+      id: "com.zlfcapp.batterymanager",
+      name: "电池容量检测管理",
+      groups: [
+        {
+          key: 1,
+          name: "开屏广告",
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: "app",
+          rules: [
+            {
+              quickFind: true,
+              matches: '@View[clickable=true] <<n [vid="splash_container"]',
+              snapshotUrls: "https://i.gkd.li/import/13960341",
+            },
+          ],
+          order: -1,
+        },
+      ],
+    },
+    {
       id: "com.dianxinai.mobile",
       name: "点心云",
       groups: [
@@ -6764,6 +6936,31 @@
           activityIds: ["com.dianxinai.mobile.MainActivity"],
           rules: '@ViewGroup[clickable = true] > TextView[text $="s" && text.length=2]',
           snapshotUrls: "https://i.gkd.li/import/12847518",
+          order: -1,
+        },
+      ],
+    },
+    {
+      id: "com.didapinche.booking",
+      name: "嘀嗒出行",
+      groups: [
+        {
+          key: 1,
+          name: "开屏广告",
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: "app",
+          rules: [
+            {
+              quickFind: true,
+              matches: '@View[clickable=true] <n * <2 * < [vid="flCSJAdContainer"]',
+              snapshotUrls: [
+                "https://i.gkd.li/import/13988957",
+                "https://i.gkd.li/import/13989178",
+              ],
+            },
+          ],
+          order: -1,
         },
       ],
     },
@@ -7086,6 +7283,7 @@
               snapshotUrls: ["https://i.gkd.li/import/13049013"],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -7204,6 +7402,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -8319,6 +8518,7 @@
               snapshotUrls: "https://i.gkd.li/import/13857307",
             },
           ],
+          order: -1,
         },
         {
           key: 6,
@@ -8551,6 +8751,7 @@
               snapshotUrls: "https://i.gkd.li/import/13926823",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -8910,6 +9111,7 @@
               snapshotUrls: "https://i.gkd.li/import/13797434",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -9052,6 +9254,7 @@
               snapshotUrls: "https://i.gkd.li/import/13827755",
             },
           ],
+          order: -1,
         },
         {
           key: 6,
@@ -9186,6 +9389,24 @@
           activityIds: "com.vphonegaga.titan.MyNativeActivity1",
           rules: '@Image < View +2 [text="反馈"]',
           snapshotUrls: "https://i.gkd.li/import/13292911",
+          enable: false,
+        },
+      ],
+    },
+    {
+      id: "com.x.istar",
+      name: "观星",
+      groups: [
+        {
+          key: 1,
+          name: "全屏广告-开屏广告弹窗",
+          quickFind: true,
+          matchTime: 10000,
+          resetMatch: "app",
+          actionMaximum: 1,
+          activityIds: "com.x.istar.view.main.MainActivity",
+          rules: '[text="关闭广告"][vid="btn_negative"]',
+          snapshotUrls: "https://i.gkd.li/import/13974606",
           enable: false,
         },
       ],
@@ -10020,6 +10241,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -10076,6 +10298,7 @@
             "https://i.gkd.li/import/12814007",
             "https://i.gkd.li/import/12819351",
           ],
+          order: -1,
         },
       ],
     },
@@ -10103,6 +10326,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           enable: false,
@@ -10184,6 +10408,7 @@
               snapshotUrls: ["https://i.gkd.li/import/12745222"],
             },
           ],
+          order: -1,
         },
         {
           key: 2,
@@ -10311,6 +10536,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -10373,6 +10599,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -10443,6 +10670,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -10784,6 +11012,7 @@
           actionMaximum: 1,
           resetMatch: "app",
           rules: "[id=`com.handsgo.jiakao.android:id/closeLayout`]",
+          order: -1,
         },
         {
           key: 1,
@@ -11990,6 +12219,7 @@
           actionMaximum: 1,
           resetMatch: "app",
           rules: "[id=`com.yek.android.kfc.activitys:id/splash_tv_3`]",
+          order: -1,
         },
       ],
     },
@@ -12046,6 +12276,7 @@
               snapshotUrls: "https://i.gkd.li/import/13197536",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -12265,6 +12496,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 0,
@@ -12358,6 +12590,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -12452,6 +12685,23 @@
               snapshotUrls: "https://i.gkd.li/import/13540871",
             },
           ],
+        },
+      ],
+    },
+    {
+      id: "com.ecellsz.watch.guard",
+      name: "乐康守护",
+      groups: [
+        {
+          key: 0,
+          name: "开屏广告",
+          matchTime: 10000,
+          resetMatch: "app",
+          actionMaximum: 1,
+          quickFind: true,
+          rules: 'View[clickable=true] <<n [vid="splash_container"]',
+          snapshotUrls: "https://i.gkd.li/import/14039510",
+          order: -1,
         },
       ],
     },
@@ -12591,6 +12841,7 @@
           actionMaximum: 1,
           resetMatch: "app",
           rules: "[id=`com.hxak.liangongbao:id/time_down`]",
+          order: -1,
         },
       ],
     },
@@ -12865,6 +13116,7 @@
               snapshotUrls: "https://i.gkd.li/import/13214974",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -12964,6 +13216,7 @@
           quickFind: true,
           rules: '@View[clickable=true] <2 [id="com.antfortune.wealth:id/welcome_page"]',
           snapshotUrls: "https://i.gkd.li/import/12776577",
+          order: -1,
         },
       ],
     },
@@ -13309,6 +13562,17 @@
       id: "com.paokeji.yiqu",
       name: "喵趣漫画",
       groups: [
+        {
+          key: 0,
+          name: "开屏广告",
+          matchTime: 10000,
+          quickFind: true,
+          resetMatch: "app",
+          actionMaximum: 1,
+          rules: '@View[clickable=true] <<n [vid="lyContainer"]',
+          snapshotUrls: "https://i.gkd.li/import/14031922",
+          order: -1,
+        },
         {
           key: 1,
           name: "局部广告",
@@ -13696,6 +13960,7 @@
           resetMatch: "app",
           rules: '@View[clickable=true] <3 * <2 * < [vid="splash_container_half_size"]',
           snapshotUrls: "https://i.gkd.li/import/13849831",
+          order: -1,
         },
       ],
     },
@@ -13782,6 +14047,7 @@
           actionMaximum: 1,
           rules: '[id="android:id/content"] >n FrameLayout[childCount=4] > View',
           snapshotUrls: "https://i.gkd.li/import/13832104",
+          order: -1,
         },
       ],
     },
@@ -14001,6 +14267,7 @@
               snapshotUrls: "https://i.gkd.li/import/13855443",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -14043,6 +14310,7 @@
           resetMatch: "app",
           rules: '@[id="com.xiaohu.olevodmobile:id/init_time_text"] + [text="跳过"]',
           snapshotUrls: "https://i.gkd.li/import/12826256",
+          order: -1,
         },
       ],
     },
@@ -14071,6 +14339,7 @@
               snapshotUrls: "https://i.gkd.li/import/12903095",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -14428,6 +14697,7 @@
               ],
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -15069,7 +15339,7 @@
       groups: [
         {
           key: 1,
-          name: "首页顶部广告",
+          name: "局部广告-首页顶部广告",
           activityIds: "com.qinlin.edoor.MainActivity",
           rules: [
             {
@@ -15084,7 +15354,7 @@
         },
         {
           key: 2,
-          name: "弹窗广告",
+          name: "全屏广告-弹窗广告",
           rules: [
             {
               key: 0,
@@ -15099,7 +15369,7 @@
         {
           enable: false,
           key: 10,
-          name: "开门有奖弹窗",
+          name: "全屏广告-开门有奖弹窗",
           activityIds: "com.qinlin.edoor.MainActivity",
           rules: '[desc="开门有奖"] +2 [desc="立即领取"] + ImageView',
           snapshotUrls: "https://i.gkd.li/import/12707736",
@@ -15107,10 +15377,18 @@
         {
           enable: false,
           key: 11,
-          name: "获得金币弹窗",
+          name: "全屏广告-获得金币弹窗",
           activityIds: "com.qinlin.edoor.MainActivity",
           rules: ['[desc="获得金币"] +3 [desc="开心收下"] + ImageView'],
           snapshotUrls: ["https://i.gkd.li/import/12707738"],
+        },
+        {
+          key: 12,
+          name: "全屏广告-开门成功后广告弹窗",
+          desc: "来自【腾讯广告sdk】",
+          rules: '[vid="interact_ad_root"] >2 [vid="iv_close"]',
+          snapshotUrls: "https://i.gkd.li/import/13932707",
+          enable: false,
         },
       ],
     },
@@ -15232,6 +15510,7 @@
               snapshotUrls: ["https://i.gkd.li/import/13276317"],
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -15512,6 +15791,7 @@
               snapshotUrls: "https://i.gkd.li/import/13761160",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -15793,6 +16073,7 @@
               snapshotUrls: "https://i.gkd.li/import/13609106",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -16387,6 +16668,7 @@
               snapshotUrls: "https://i.gkd.li/import/13797352",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -16492,10 +16774,20 @@
           desc: "点击跳过",
           rules: [
             {
+              key: 0,
               matches: '@View[clickable=true] <3 * <2 * < FrameLayout[id="com.mymoney:id/external_ad_content"]',
               snapshotUrls: "https://i.gkd.li/import/13855760",
             },
+            {
+              key: 1,
+              matches: '[text*="跳过"][text.length<=10]',
+              snapshotUrls: [
+                "https://i.gkd.li/import/13939216",
+                "https://i.gkd.li/import/13939163",
+              ],
+            },
           ],
+          order: -1,
         },
       ],
     },
@@ -16578,6 +16870,7 @@
               snapshotUrls: "https://i.gkd.li/import/12836857",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -16635,6 +16928,7 @@
           actionMaximum: 1,
           resetMatch: "app",
           rules: '[id="com.taobao.taobao:id/close"]',
+          order: -1,
         },
         {
           enable: false,
@@ -16844,6 +17138,27 @@
       ],
     },
     {
+      id: "com.leixun.taofen8",
+      name: "淘粉吧",
+      groups: [
+        {
+          key: 1,
+          name: "开屏广告",
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: "app",
+          rules: [
+            {
+              quickFind: true,
+              matches: '@View[clickable=true] <<n [id="com.leixun.taofen8:id/fl_advert_container"]',
+              snapshotUrls: "https://i.gkd.li/import/13937324",
+            },
+          ],
+          order: -1,
+        },
+      ],
+    },
+    {
       id: "com.taobao.litetao",
       name: "淘特",
       groups: [
@@ -16853,6 +17168,7 @@
           activityIds: "com.taobao.ltao.maintab.MainFrameActivity",
           rules: '[id="com.taobao.litetao:id/root_layout"] > TextView[text^="还剩"&&text$="秒"]',
           snapshotUrls: "https://i.gkd.li/import/12774851",
+          order: -1,
         },
         {
           key: 1,
@@ -16962,6 +17278,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -17194,6 +17511,28 @@
       ],
     },
     {
+      id: "com.tencent.qqsports",
+      name: "腾讯体育",
+      groups: [
+        {
+          key: 0,
+          name: "开屏广告",
+          quickFind: true,
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: "app",
+          rules: [
+            {
+              action: "clickCenter",
+              matches: 'TextView[text*="跳过"][text.length<=10]',
+              snapshotUrls: "https://i.gkd.li/import/14032883",
+            },
+          ],
+          order: -1,
+        },
+      ],
+    },
+    {
       id: "com.qq.qcloud",
       name: "腾讯微云",
       groups: [
@@ -17215,6 +17554,7 @@
               snapshotUrls: "https://i.gkd.li/import/12755799",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -17231,6 +17571,7 @@
           resetMatch: "app",
           rules: '@LinearLayout > [id="com.tencent.docs:id/tv_gdt_ad_text"]',
           snapshotUrls: "https://i.gkd.li/import/13198082",
+          order: -1,
         },
         {
           key: 1,
@@ -18020,7 +18361,7 @@
         {
           enable: false,
           key: 1,
-          name: "新版本提示",
+          name: "更新提示",
           quickFind: true,
           actionMaximum: 1,
           activityIds: [
@@ -18036,12 +18377,34 @@
         {
           enable: false,
           key: 2,
-          name: "弹窗广告",
+          name: "全屏广告-弹窗广告",
           quickFind: true,
           actionMaximum: 1,
           activityIds: "com.wacai365.HomeActivity",
           rules: '[id^="com.wacai365:id/promote_banner_close"]',
           snapshotUrls: "https://i.gkd.li/import/13249666",
+        },
+        {
+          key: 3,
+          name: "开屏广告",
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: "app",
+          rules: [
+            {
+              key: 0,
+              quickFind: true,
+              matches: '@View[clickable=true] <2 * <2 * < [vid="flTTContainer"]',
+              snapshotUrls: "https://i.gkd.li/import/14021540",
+            },
+            {
+              key: 3,
+              quickFind: true,
+              matches: '[text^="跳过"][text.length<=6]',
+              snapshotUrls: "https://i.gkd.li/import/13399124",
+            },
+          ],
+          order: -1,
         },
       ],
     },
@@ -18080,6 +18443,7 @@
               snapshotUrls: "https://i.gkd.li/import/13930573",
             },
           ],
+          order: -1,
         },
         {
           key: 3,
@@ -18183,6 +18547,7 @@
               snapshotUrls: "https://i.gkd.li/import/13885906",
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -18487,6 +18852,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -18547,7 +18913,13 @@
               matches: '[id$="tt_splash_skip_btn"]',
               snapshotUrls: "https://i.gkd.li/import/12999739",
             },
+            {
+              key: 2,
+              matches: "FrameLayout > FrameLayout[childCount>2] > @View[clickable=true] + TextView",
+              snapshotUrls: "https://i.gkd.li/import/14046124",
+            },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -19330,6 +19702,7 @@
               snapshotUrls: ["https://i.gkd.li/import/12903877"],
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -20411,18 +20784,21 @@
             },
             {
               key: 2,
-              matches: '[id = "com.byted.pangle:id/tt_splash_skip_btn"]',
+              quickFind: true,
+              matches: '@[id$="tt_splash_skip_btn"] <<n [id="com.realtech.xiaocan:id/splash_ad_container"]',
               snapshotUrls: "https://i.gkd.li/import/12854728",
             },
             {
               key: 3,
-              matches: '[id="com.realtech.xiaocan:id/splash_ad_container"] >n FrameLayout[childCount<=4] > FrameLayout +n @View[clickable=true] + TextView',
+              quickFind: true,
+              matches: '@View[visibleToUser=true][clickable=true] <n FrameLayout[childCount=4||childCount=3] <<n [id="com.realtech.xiaocan:id/splash_ad_container"]',
               snapshotUrls: [
                 "https://i.gkd.li/import/13694858",
                 "https://i.gkd.li/import/13794403",
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -20460,6 +20836,7 @@
               snapshotUrls: "https://i.gkd.li/import/13867880",
             },
           ],
+          order: -1,
         },
         {
           key: 6,
@@ -21169,6 +21546,7 @@
               snapshotUrls: "https://i.gkd.li/import/13914788",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -21189,6 +21567,27 @@
             },
           ],
           enable: false,
+        },
+      ],
+    },
+    {
+      id: "com.xiaote",
+      name: "小特",
+      groups: [
+        {
+          key: 1,
+          name: "开屏广告",
+          quickFind: true,
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: "app",
+          rules: [
+            {
+              matches: '[id="com.xiaote:id/ad_close"][text*="关闭"]',
+              snapshotUrls: "https://i.gkd.li/import/14035706",
+            },
+          ],
+          order: -1,
         },
       ],
     },
@@ -21306,6 +21705,7 @@
               snapshotUrls: "https://i.gkd.li/import/13820450",
             },
           ],
+          order: -1,
         },
       ],
     },
@@ -21337,6 +21737,7 @@
               ],
             },
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -21484,6 +21885,7 @@
             "https://i.gkd.li/import/13059838",
             "https://i.gkd.li/import/13800235",
           ],
+          order: -1,
         },
       ],
     },
@@ -22656,6 +23058,7 @@
               snapshotUrls: "https://i.gkd.li/import/13930391",
             },
           ],
+          order: -1,
         },
         {
           key: 2,
@@ -23418,6 +23821,7 @@
           resetMatch: "app",
           rules: '[id="com.ky.medical.reference:id/btn_go"][text^="关闭"]',
           snapshotUrls: "https://i.gkd.li/import/12918049",
+          order: -1,
         },
         {
           key: 0,
@@ -23696,6 +24100,7 @@
           resetMatch: "app",
           rules: '[id="com.cmstop.shaoxing:id/roundProgressBar"]',
           snapshotUrls: "https://i.gkd.li/import/13611775",
+          order: -1,
         },
       ],
     },
@@ -23718,6 +24123,7 @@
             "https://i.gkd.li/import/13239194",
             "https://i.gkd.li/import/13723967",
           ],
+          order: -1,
         },
       ],
     },
@@ -24401,6 +24807,7 @@
               snapshotUrls: ["https://i.gkd.li/import/12644260"],
             },
           ],
+          order: -1,
         },
         {
           key: 2,
@@ -24805,6 +25212,7 @@
             "https://i.gkd.li/import/12883329",
             "https://i.gkd.li/import/12981146",
           ],
+          order: -1,
         },
         {
           key: 1,
@@ -25177,6 +25585,7 @@
               snapshotUrls: "https://i.gkd.li/import/13725305",
             },
           ],
+          order: -1,
         },
         {
           name: "首页-今日要闻-不再提示",
@@ -25412,6 +25821,39 @@
           activityIds: "com.ccb.start.view.startdialog.StartDialogActivity",
           rules: '[id="com.chinamworld.main:id/indicator_container_container"] + [id="com.chinamworld.main:id/close"]',
           snapshotUrls: "https://i.gkd.li/import/12726961",
+          enable: false,
+        },
+      ],
+    },
+    {
+      id: "cn.mil.junhao",
+      name: "中国军号",
+      groups: [
+        {
+          key: 0,
+          name: "开屏广告",
+          quickFind: true,
+          matchTime: 10000,
+          resetMatch: "app",
+          actionMaximum: 1,
+          rules: '[vid="splash_adv_ship"]',
+          snapshotUrls: "https://i.gkd.li/import/13806892",
+          order: -1,
+        },
+        {
+          key: 1,
+          name: "功能类-首页右侧浮窗",
+          activityIds: "com.mediacloud.app.nav2.AppHome21Style",
+          rules: '[vid="fragment_containerx"] > FrameLayout > ImageView[index=2][clickable=true]',
+          snapshotUrls: "https://i.gkd.li/import/13806894",
+          enable: false,
+        },
+        {
+          key: 2,
+          name: "功能类-意见反馈浮窗",
+          activityIds: "com.mediacloud.app.nav2.AppHome21Style",
+          rules: '[vid="float_feedback"] > ImageView[index=2][clickable=true]',
+          snapshotUrls: "https://i.gkd.li/import/13806896",
           enable: false,
         },
       ],
