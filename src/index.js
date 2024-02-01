@@ -335,6 +335,7 @@ function switchStatus(type){
                 return
             }
         }
+        script = JSON5.parse(localStorage.getItem(String(fullScript.id)));
         fullScript.apps = script;
         document.getElementById('subVer').innerHTML = '<span>订阅版本：' + fullScript.version + '</span>';
         document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
