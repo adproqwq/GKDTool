@@ -321,7 +321,15 @@ function copyPackageName(location){
 };
 
 function switchStatus(type){
-    if(type == 'memorize') localStorage.setItem(String(fullScript.id), JSON5.stringify(script));
+    if(type == 'memorize'){
+        try{
+            let result = localStorage.setItem(String(fullScript.id), JSON5.stringify(script).slice(1,-1));
+            throw result
+        } catch (error){
+            alert('啊哦，记不下了');
+            return
+        }
+    }
     else if(type == 'read'){
         try{
             script = localStorage.getItem(String(fullScript.id));
