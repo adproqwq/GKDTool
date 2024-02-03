@@ -357,6 +357,24 @@ function switchStatus(type){
     }
 }
 
+function launch_GKD(){
+    const options = {
+        scheme: {
+            protocol: 'gkd',
+            host: 'import',
+        },
+        intent: {
+            package: 'li.songe.gkd',
+            scheme: 'gkd',
+        },
+        fallback: 'https://gkd.li/guide/#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85',
+    };
+    const callLib = new CallApp(options);
+    callLib.open({
+        path: '',
+    });
+};
+
 function tableInfo(appName, packageName, id, style, ruleName, desc){
     let result = `
     <tr>

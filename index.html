@@ -26,6 +26,9 @@
             <button type="button" class="btn btn1" onclick="switchStatus('memorize');">记忆当前订阅开关状态</button>
             <button type="button" class="btn btn1" onclick="switchStatus('read');">读取当前订阅开关状态</button>
         </div>
+        <div id="quickStart">
+            <button type="button" class="btn btn1" onclick="launch_GKD();">一键打开GKD</button>
+        </div>
         <div id="version">
             <div id="subVer"></div>
             <div id="codeVer"></div>
@@ -49,6 +52,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.6.5/dist/axios.min.js"></script>
         <script src="https://cdn.bootcdn.net/ajax/libs/json5/2.2.3/index.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/callapp-lib@latest/dist/index.umd.js"></script>
         <script src="./src/index.js"></script>
         <script>getDetails();</script>
     </body>
