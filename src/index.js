@@ -16,7 +16,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript;
-const codeVer = '1.1.0';
+const codeVer = '1.1.1';
 
 function changeSwitch(index,job){
     if(index != 'all'){
@@ -362,6 +362,10 @@ function launch_GKD(){
         scheme: {
             protocol: 'gkd',
             host: 'import',
+        },
+        intent: {
+            package: 'li.songe.gkd',
+            scheme: 'gkd',
         },
         fallback: 'https://gkd.li/guide/#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85',
     };
