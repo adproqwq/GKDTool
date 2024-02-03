@@ -1,7 +1,7 @@
 {
   id: 0,
-  name: "默认订阅",
-  version: 185,
+  name: "默认订阅-已停止维护",
+  version: 186,
   author: "lisonge",
   supportUri: "https://github.com/gkd-kit/subscription",
   updateUrl: "https://registry.npmmirror.com/@gkd-kit/subscription/latest/files",
