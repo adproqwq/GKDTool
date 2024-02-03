@@ -367,7 +367,7 @@ function launch_GKD(){
     };
     const callLib = new CallApp(options);
     callLib.open({
-        path: '',
+        path: 'import',
     });
 };
 
