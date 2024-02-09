@@ -313,17 +313,17 @@ function getThirdPartySub(){
     let userselect = document.getElementById("thirdParty");
     let index = userselect.selectedIndex;
     if(userselect.options[index].value == 'Adpro'){
-        axios.get('/adpro/Adpro-Team/GKD_subscription/main/dist/Adpro_gkd.json5').then((data)=>{
+        axios.get('/adpro/gitmirror/Adpro-Team/GKD_subscription/main/dist/Adpro_gkd.json5').then((data)=>{
             writeTable(data);
         });
     }
     else if(userselect.options[index].value == 'AIsouler'){
-        axios.get('/adpro/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5').then((data)=>{
+        axios.get('/adpro/gitmirror/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5').then((data)=>{
             writeTable(data);
         });
     }
     else if(userselect.options[index].value == 'aoguai'){
-        axios.get('/adpro/aoguai/subscription/custom/dist/aoguai_gkd.json5').then((data)=>{
+        axios.get('/adpro/gitmirror/aoguai/subscription/custom/dist/aoguai_gkd.json5').then((data)=>{
             writeTable(data);
         });
     }
