@@ -254,7 +254,7 @@ function edit(location){
     };
     document.getElementById('save').onclick = function(){
         script[i].groups[j] = JSON5.parse(document.getElementById('content').value);
-        alert('保存成功！请不要刷新网页');
+        alert('保存成功！请不要刷新网页，否则会导致修改丢失');
         document.getElementById('edit').style.display = 'none';
     };
 };
