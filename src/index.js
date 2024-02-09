@@ -225,31 +225,7 @@ function output(type){
 
 function getDetails(){
     axios.get('../gkd.json5').then(function(data){
-        data = JSON5.parse(data.data);
-        fullScript = data;
-        script = data.apps;
-        document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
-        document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
-        document.getElementById('appList').innerHTML = initTable;
-        var eachAppRules = '';
-        for(let i in data.apps){
-            var packageName, appName, ruleName, desc, style;
-            packageName = data.apps[i].id;
-            appName = data.apps[i].name;
-            for(let j in data.apps[i].groups){
-                ruleName = data.apps[i].groups[j].name;
-                if(data.apps[i].groups[j].hasOwnProperty('enable') == true){
-                    if(data.apps[i].groups[j]['enable'] == false) style = 'color: red;';
-                    else style = 'color: green;';
-                }
-                else style = 'color: green;';
-                if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
-                else desc = '该规则暂无描述';
-                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
-            };
-        };
-        let ruleList = document.querySelector('tbody');
-        ruleList.innerHTML = eachAppRules;
+        writeTable(data);
     });
 };
 
@@ -264,32 +240,8 @@ function readFile(){
     reader.readAsText(subFile[0],'UTF-8');
     reader.onload = function(e){
         let data = e.target.result;
-        data = JSON5.parse(data);
-        fullScript = data;
-        script = data.apps;
-        document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
-        document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
-        document.getElementById('appList').innerHTML = initTable;
-        var eachAppRules = '';
-        for(let i in data.apps){
-            var packageName, appName, ruleName, desc, style;
-            packageName = data.apps[i].id;
-            appName = data.apps[i].name;
-            for(let j in data.apps[i].groups){
-                ruleName = data.apps[i].groups[j].name;
-                if(script[i].groups[j].hasOwnProperty('enable') == true){
-                    if(script[i].groups[j]['enable'] == false) style = 'color: red;';
-                    else style = 'color: green;';
-                }
-                else style = 'color: green;';
-                if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
-                else desc = '该规则暂无描述';
-                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
-            };
-        };
-        let ruleList = document.querySelector('tbody');
-        ruleList.innerHTML = eachAppRules;
-    }
+        writeTable(data);
+    };
 };
 
 function edit(location){
@@ -355,7 +307,27 @@ function switchStatus(type){
         let ruleList = document.querySelector('tbody');
         ruleList.innerHTML = eachAppRules;
     }
-}
+};
+
+function getThirdPartySub(){
+    let userselect = document.getElementById("thirdParty");
+    let index = userselect.selectedIndex;
+    if(userselect.options[index].value == 'Adpro'){
+        axios.get('/adpro/Adpro-Team/GKD_subscription/main/dist/Adpro_gkd.json5').then((data)=>{
+            writeTable(data);
+        });
+    }
+    else if(userselect.options[index].value == 'AIsouler'){
+        axios.get('/adpro/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5').then((data)=>{
+            writeTable(data);
+        });
+    }
+    else if(userselect.options[index].value == 'aoguai'){
+        axios.get('/adpro/aoguai/subscription/custom/dist/aoguai_gkd.json5').then((data)=>{
+            writeTable(data);
+        });
+    }
+};
 
 function launch_GKD(){
     const options = {
@@ -375,6 +347,7 @@ function launch_GKD(){
     });
 };
 
+//复用代码
 function tableInfo(appName, packageName, id, style, ruleName, desc){
     let result = `
     <tr>
@@ -393,4 +366,32 @@ function tableInfo(appName, packageName, id, style, ruleName, desc){
         </td>
     </tr>`;
     return result;
+};
+
+function writeTable(data){
+    data = JSON5.parse(data.data);
+    fullScript = data;
+    script = data.apps;
+    document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
+    document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
+    document.getElementById('appList').innerHTML = initTable;
+    var eachAppRules = '';
+    for(let i in data.apps){
+        var packageName, appName, ruleName, desc, style;
+        packageName = data.apps[i].id;
+        appName = data.apps[i].name;
+        for(let j in data.apps[i].groups){
+            ruleName = data.apps[i].groups[j].name;
+            if(data.apps[i].groups[j].hasOwnProperty('enable') == true){
+                if(data.apps[i].groups[j]['enable'] == false) style = 'color: red;';
+                else style = 'color: green;';
+            }
+            else style = 'color: green;';
+            if(data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
+            else desc = '该规则暂无描述';
+            eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
+        };
+    };
+    let ruleList = document.querySelector('tbody');
+    ruleList.innerHTML = eachAppRules;
 };

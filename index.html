@@ -21,6 +21,14 @@
         <div>
             <span>导入外部订阅文件：</span>
             <input id="upload" type="file" accept=".json5, application/json" onchange="readFile();">
+            <span>选择第三方订阅：</span>
+            <select id="thirdParty">
+                <option disabled hidden value="defult" label="默认订阅"></option>
+                <option value="Adpro" label="Adpro的GKD订阅"></option>
+                <option value="AIsouler" label="AIsouler的GKD订阅"></option>
+                <option value="aoguai" label="aoguai的GKD订阅"></option>
+            </select>
+            <button type="button" class="btn btn1" onclick="getThirdPartySub();">快捷导入第三方订阅</button>
         </div>
         <div id="switchStatus">
             <button type="button" class="btn btn1" onclick="switchStatus('memorize');">记忆当前订阅开关状态</button>
