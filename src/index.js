@@ -225,6 +225,7 @@ function output(type){
 
 function getDetails(){
     axios.get('../gkd.json5').then(function(data){
+        data = JSON5.parse(data.data);
         writeTable(data);
     });
 };
@@ -369,7 +370,6 @@ function tableInfo(appName, packageName, id, style, ruleName, desc){
 };
 
 function writeTable(data){
-    data = JSON5.parse(data.data);
     fullScript = data;
     script = data.apps;
     document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
