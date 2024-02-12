@@ -237,10 +237,13 @@ function readFile(){
         return
     }
     const subFile = objFile.files;
+    let type = objFile.value.substring(objFile.value.lastIndexOf('.')+1);
     const reader = new FileReader();
     reader.readAsText(subFile[0],'UTF-8');
     reader.onload = function(e){
         let data = e.target.result;
+        if(type == 'json') data = JSON.parse(data);
+        else if(type == 'json5') data = JSON5.parse(data);
         writeTable(data);
     };
 };
