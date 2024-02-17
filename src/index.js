@@ -320,18 +320,21 @@ function getThirdPartySub(){
         axios.get('/adpro/cdn/gh/Adpro-Team/GKD_subscription@main/dist/Adpro_gkd.json5').then((data)=>{
             data = JSON5.parse(data.data);
             writeTable(data);
+            alert('导入成功！');
         });
     }
     else if(userselect.options[index].value == 'AIsouler'){
         axios.get('/adpro/cdn/gh/AIsouler/subscription@main/dist/AIsouler_gkd.json5').then((data)=>{
             data = JSON5.parse(data.data);
             writeTable(data);
+            alert('导入成功！');
         });
     }
     else if(userselect.options[index].value == 'aoguai'){
         axios.get('/adpro/cdn/gh/aoguai/subscription@custom/dist/aoguai_gkd.json5').then((data)=>{
             data = JSON5.parse(data.data);
             writeTable(data);
+            alert('导入成功！');
         });
     }
 };
