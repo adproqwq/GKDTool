@@ -17,7 +17,8 @@ var initTable = `
 </table>`;
 var script, fullScript;
 const codeVer = '1.2.0';
-docCookies.setItem('cf_clearance','3NgsD2I_jm6qYmB1CDDop63txvvRERy9ah1C.JBAv7I-1706882981-1-AV40WoWYPPfZtp1V/NTOUiFCGg2NftndJY2RdArVKzQ+5wuJ9Oj3qjSrclxNbrapoVCnkQ3Kz2jEm7gHp8iY9VY=','/','.raw.gitmirror.com');
+const cookieValue = encodeURI('3NgsD2I_jm6qYmB1CDDop63txvvRERy9ah1C.JBAv7I-1706882981-1-AV40WoWYPPfZtp1V/NTOUiFCGg2NftndJY2RdArVKzQ+5wuJ9Oj3qjSrclxNbrapoVCnkQ3Kz2jEm7gHp8iY9VY=');
+document.cookie = 'cf_clearance=' + cookieValue + ';domain=.raw.gitmirror.com;path=/';
 
 function changeSwitch(index,job){
     if(index != 'all'){
