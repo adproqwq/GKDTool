@@ -314,20 +314,27 @@ function switchStatus(type){
 };
 
 function getThirdPartySub(){
+    document.cookie = 'cf_clearance=3NgsD2I_jm6qYmB1CDDop63txvvRERy9ah1C.JBAv7I-1706882981-1-AV40WoWYPPfZtp1V/NTOUiFCGg2NftndJY2RdArVKzQ+5wuJ9Oj3qjSrclxNbrapoVCnkQ3Kz2jEm7gHp8iY9VY=;domain=.raw.gitmirror.com;path=/';
     let userselect = document.getElementById("thirdParty");
     let index = userselect.selectedIndex;
     if(userselect.options[index].value == 'Adpro'){
-        axios.get('/adpro/gitmirror/Adpro-Team/GKD_subscription/main/dist/Adpro_gkd.json5').then((data)=>{
+        axios.get('/adpro/gitmirror/Adpro-Team/GKD_subscription/main/dist/Adpro_gkd.json5',{
+            withCredentials: true
+        }).then((data)=>{
             writeTable(data);
         });
     }
     else if(userselect.options[index].value == 'AIsouler'){
-        axios.get('/adpro/gitmirror/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5').then((data)=>{
+        axios.get('/adpro/gitmirror/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5',{
+            withCredentials: true
+        }).then((data)=>{
             writeTable(data);
         });
     }
     else if(userselect.options[index].value == 'aoguai'){
-        axios.get('/adpro/gitmirror/aoguai/subscription/custom/dist/aoguai_gkd.json5').then((data)=>{
+        axios.get('/adpro/gitmirror/aoguai/subscription/custom/dist/aoguai_gkd.json5',{
+            withCredentials: true
+        }).then((data)=>{
             writeTable(data);
         });
     }
