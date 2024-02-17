@@ -17,11 +17,6 @@ var initTable = `
 </table>`;
 var script, fullScript;
 const codeVer = '1.2.0';
-const cookieValue = encodeURI('3NgsD2I_jm6qYmB1CDDop63txvvRERy9ah1C.JBAv7I-1706882981-1-AV40WoWYPPfZtp1V/NTOUiFCGg2NftndJY2RdArVKzQ+5wuJ9Oj3qjSrclxNbrapoVCnkQ3Kz2jEm7gHp8iY9VY=');
-Cookies.set('cf_clearance',cookieValue,{
-    domain: '.raw.gitmirror.com',
-    path: '/'
-});
 
 function changeSwitch(index,job){
     if(index != 'all'){
@@ -322,23 +317,17 @@ function getThirdPartySub(){
     let userselect = document.getElementById("thirdParty");
     let index = userselect.selectedIndex;
     if(userselect.options[index].value == 'Adpro'){
-        axios.get('/adpro/gitmirror/Adpro-Team/GKD_subscription/main/dist/Adpro_gkd.json5',{
-            withCredentials: true
-        }).then((data)=>{
+        axios.get('/adpro/cdn/gh/Adpro-Team/GKD_subscription@main/dist/Adpro_gkd.json5').then((data)=>{
             writeTable(data);
         });
     }
     else if(userselect.options[index].value == 'AIsouler'){
-        axios.get('/adpro/gitmirror/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5',{
-            withCredentials: true
-        }).then((data)=>{
+        axios.get('/adpro/cdn/gh/AIsouler/subscription@main/dist/AIsouler_gkd.json5').then((data)=>{
             writeTable(data);
         });
     }
     else if(userselect.options[index].value == 'aoguai'){
-        axios.get('/adpro/gitmirror/aoguai/subscription/custom/dist/aoguai_gkd.json5',{
-            withCredentials: true
-        }).then((data)=>{
+        axios.get('/adpro/cdn/gh/aoguai/subscription@custom/dist/aoguai_gkd.json5').then((data)=>{
             writeTable(data);
         });
     }

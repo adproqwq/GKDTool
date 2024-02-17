@@ -3,8 +3,8 @@ const {
 } = require('http-proxy-middleware')
 module.exports = (req, res) => {
     let target = ''
-    if (req.url.startsWith('/adpro/gitmirror')) {
-        target = 'https://raw.gitmirror.com'
+    if (req.url.startsWith('/adpro/cdn')) {
+        target = 'https://fastly.jsdelivr.net'
     }
     createProxyMiddleware({
         target,
