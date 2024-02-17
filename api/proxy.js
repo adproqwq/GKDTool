@@ -13,7 +13,7 @@ module.exports = (req, res) => {
             '^/adpro/([^/]*)/': '/'
         },
         cookieDomainRewrite: {
-            'rules.adproqwq.xyz': '.raw.gitmirror.com',
+            'rules.adproqwq.xyz': 'raw.gitmirror.com',
         },
     })(req, res)
 }
