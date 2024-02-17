@@ -11,6 +11,9 @@ module.exports = (req, res) => {
         changeOrigin: true,
         pathRewrite: {
             '^/adpro/([^/]*)/': '/'
-        }
+        },
+        cookieDomainRewrite: {
+            'rules.adproqwq.xyz': '.raw.gitmirror.com',
+        },
     })(req, res)
 }
