@@ -337,6 +337,13 @@ function getThirdPartySub(){
             alert('导入成功！');
         });
     }
+    else if(userselect.options[index].value == 'ganlinte'){
+        axios.get('/adpro/cdn/gh/ganlinte/GKD-subscription@main/dist/ganlin_gkd.json5').then((data)=>{
+            data = JSON5.parse(data.data);
+            writeTable(data);
+            alert('导入成功！');
+        });
+    }
 };
 
 function launch_GKD(){
