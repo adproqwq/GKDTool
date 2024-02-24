@@ -66,27 +66,7 @@ function search(){
     var same, include = 0;
     var preferences = [];
     var secondaryOptions = [];
-    if(target == ''){
-        var eachAppRules = '';
-        for(let i in script){
-            var packageName, appName, ruleName, desc, style;
-            packageName = script[i].id;
-            appName = script[i].name;
-            for(let j in script[i].groups){
-                ruleName = script[i].groups[j].name;
-                if(script[i].groups[j].hasOwnProperty('enable') == true){
-                    if(script[i].groups[j]['enable'] == false) style = 'color: red;';
-                    else style = 'color: green;';
-                }
-                else style = 'color: green;';
-                if(script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
-                else desc = '该规则暂无描述';
-                eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
-            };
-        };
-        let ruleList = document.querySelector('tbody');
-        ruleList.innerHTML = eachAppRules;
-    }
+    if(target == '') writeTable(fullScript);
     else{
         if(target.split(' ').indexOf('rules') != -1){
             if(target.split(' ').length == 3){
