@@ -126,21 +126,9 @@ const convert = async(lttAllRule) => {
     else throwCount++;
   });
 
-  alert(`共识别到应用${originLength}个，已抛弃${throwCount}个未知应用的规则`);
+  console.log(`共识别到应用${originLength}个，已抛弃${throwCount}个未知应用的规则`);
 
-  const blob = new Blob([JSON.stringify(thisSub)],{
-    type: 'application/json'
-  });
-  const downloadURL = URL.createObjectURL(blob);
-  const aTag = document.createElement('a');
-  aTag.href = downloadURL;
-  aTag.download = '-2.json';
-  aTag.click();
-  URL.revokeObjectURL(downloadURL);
-  
-  //await fs.writeFile(process.cwd() + '/ltt2gkd/result.json', JSON.stringify(thisSub.apps[0]));
+  await fs.writeFile(process.cwd() + '/ltt2gkd/-2.json', JSON.stringify(thisSub));
 };
 
-const a = (lttSubFile) => {
-  convert(lttSubFile);
-};
+convert(process.argv[2]);
