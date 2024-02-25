@@ -4,5 +4,11 @@
             "source": "/adpro/(.*)",
             "destination": "api/proxy"
         }
-    ]
+    ],
+    "functions": {
+        "src/convert.js": {
+        "runtime": "nodejs14.x"
+        }
+    }
+      
 }
