@@ -4,11 +4,6 @@
             "source": "/adpro/(.*)",
             "destination": "api/proxy"
         }
-    ],
-    "functions": {
-        "src/convert.js": {
-            "runtime": "nodejs18.x"
-        }
-    }
+    ]
       
 }
