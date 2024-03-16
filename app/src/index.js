@@ -104,7 +104,7 @@ function search(){
       else pMatch.push(a);
     }
   });
-  var result = tMatch + pMatch;
+  var result = tMatch.concat(pMatch);
   document.getElementById('head').innerText = `搜索到 ${getJSONArrayLength(data)} 个应用`;
   const fullTable =
   `
