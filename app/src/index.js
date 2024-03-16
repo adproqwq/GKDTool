@@ -73,7 +73,7 @@ function genTable(data){
 
 function search(){
   var data = JSON.parse(window.localStorage.getItem('appList'));
-  var searchContent = document.getElementById.value;
+  var searchContent = document.getElementById('name').value;
   if(searchContent == ''){
     document.getElementById('head').innerText = `读取到 ${getJSONArrayLength(data)} 个应用`;
     const fullTable =
@@ -96,6 +96,7 @@ function search(){
     </table>
     `;
     document.getElementById('app').innerHTML = fullTable;
+    return;
   }
   var tMatch = [], pMatch = [];
   data.forEach((a) => {
@@ -105,7 +106,7 @@ function search(){
     }
   });
   var result = tMatch.concat(pMatch);
-  document.getElementById('head').innerText = `搜索到 ${getJSONArrayLength(data)} 个应用`;
+  document.getElementById('head').innerText = `搜索到 ${result.length} 个应用`;
   const fullTable =
   `
   <table class="layui-table" lay-even>
