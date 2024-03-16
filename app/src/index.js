@@ -72,6 +72,7 @@ function genTable(data){
 };
 
 function search(){
+  var data = JSON.parse(window.localStorage.getItem('appList'));
   var searchContent = document.getElementById.value;
   if(searchContent == ''){
     document.getElementById('head').innerText = `读取到 ${getJSONArrayLength(data)} 个应用`;
@@ -90,7 +91,7 @@ function search(){
         </tr>
       </thead>
       <tbody>
-        ${genTable(JSON.parse(window.localStorage.getItem('appList')))}
+        ${genTable(data)}
       </tbody>
     </table>
     `;
