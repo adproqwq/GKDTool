@@ -325,7 +325,7 @@ function getThirdPartySub() {
     });
   }
   else if (userselect.options[index].value == '114514') {
-    $.getJSON('https://fastly.jsdelivr.net/gh/gkd-sub-repo/114514_subscription@main/dist/114514_gkd.json5', function(data){
+    $.get('https://fastly.jsdelivr.net/gh/gkd-sub-repo/114514_subscription@main/dist/114514_gkd.json5', (data) => {
       data = JSON5.parse(data);
       writeTable(data);
       alert('导入成功！');
