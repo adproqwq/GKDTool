@@ -298,28 +298,28 @@ function getThirdPartySub() {
   let index = userselect.selectedIndex;
   if (userselect.options[index].value == 'Adpro') {
     $.get('https://raw.gitmirror.com/Adpro-Team/GKD_subscription/main/dist/Adpro_gkd.json5', (data) => {
-      data = JSON5.parse(data.data);
+      data = JSON5.parse(data);
       writeTable(data);
       alert('导入成功！');
     });
   }
   else if (userselect.options[index].value == 'AIsouler') {
     $.get('https://raw.gitmirror.com/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5', (data) => {
-      data = JSON5.parse(data.data);
+      data = JSON5.parse(data);
       writeTable(data);
       alert('导入成功！');
     });
   }
   else if (userselect.options[index].value == 'aoguai') {
     $.get('https://raw.gitmirror.com/aoguai/subscription/custom/dist/aoguai_gkd.json5', (data) => {
-      data = JSON5.parse(data.data);
+      data = JSON5.parse(data);
       writeTable(data);
       alert('导入成功！');
     });
   }
   else if (userselect.options[index].value == 'ganlinte') {
     $.get('https://raw.gitmirror.com/ganlinte/GKD-subscription/main/dist/ganlin_gkd.json5', (data) => {
-      data = JSON5.parse(data.data);
+      data = JSON5.parse(data);
       writeTable(data);
       alert('导入成功！');
     });
