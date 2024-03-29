@@ -81,7 +81,11 @@ function search() {
                 appName = script[i].name;
                 ruleName = script[i].groups[j].name;
                 for(let z of categories){
-                  if(ruleName.split('-')[0] === z.name) category = ruleName.split('-')[0];
+                  if(ruleName.split('-')[0] === z.name){
+                    category = ruleName.split('-')[0];
+                    break;
+                  }
+                  else category = '';
                 }
                 if (script[i].groups[j].hasOwnProperty('enable') == true) {
                   if (script[i].groups[j]['enable'] == false) style = 'color: red;';
@@ -108,7 +112,11 @@ function search() {
               appName = script[i].name;
               ruleName = script[i].groups[j].name;
               for(let z of categories){
-                if(ruleName.split('-')[0] === z.name) category = ruleName.split('-')[0];
+                if(ruleName.split('-')[0] === z.name){
+                  category = ruleName.split('-')[0];
+                  break;
+                }
+                else category = '';
               }
               if (script[i].groups[j].hasOwnProperty('enable') == true) {
                 if (script[i].groups[j]['enable'] == false) style = 'color: red;';
@@ -141,14 +149,18 @@ function search() {
           }
         }
       }
-      var packageName, appName, ruleName, category = '', desc;
+      var packageName, appName, ruleName, category, desc;
       for (let i in preferences) {
         packageName = script[preferences[i]].id;
         appName = script[preferences[i]].name;
         for (let j in script[preferences[i]].groups) {
           ruleName = script[preferences[i]].groups[j].name;
           for(let z of categories){
-            if(ruleName.split('-')[0] === z.name) category = ruleName.split('-')[0];
+            if(ruleName.split('-')[0] === z.name){
+              category = ruleName.split('-')[0];
+              break;
+            }
+            else category = '';
           }
           if (script[preferences[i]].groups[j].hasOwnProperty('enable') == true) {
             if (script[preferences[i]].groups[j]['enable'] == false) style = 'color: red;';
@@ -166,7 +178,11 @@ function search() {
         for (let j in script[secondaryOptions[i]].groups) {
           ruleName = script[secondaryOptions[i]].groups[j].name;
           for(let z of categories){
-            if(ruleName.split('-')[0] === z.name) category = ruleName.split('-')[0];
+            if(ruleName.split('-')[0] === z.name){
+              category = ruleName.split('-')[0];
+              break;
+            }
+            else category = '';
           }
           if (script[secondaryOptions[i]].groups[j].hasOwnProperty('enable') == true) {
             if (script[secondaryOptions[i]].groups[j]['enable'] == false) style = 'color: red;';
@@ -395,13 +411,17 @@ function writeTable(data) {
   document.getElementById('appList').innerHTML = initTable;
   var eachAppRules = '';
   for (let i in data.apps) {
-    var packageName, appName, category = '', ruleName, desc, style;
+    var packageName, appName, category, ruleName, desc, style;
     packageName = data.apps[i].id;
     appName = data.apps[i].name;
     for (let j in data.apps[i].groups) {
       ruleName = data.apps[i].groups[j].name;
       for(let z of categories){
-        if(ruleName.split('-')[0] === z.name) category = ruleName.split('-')[0];
+        if(ruleName.split('-')[0] === z.name){
+          category = ruleName.split('-')[0];
+          break;
+        }
+        else category = '';
       }
       if (data.apps[i].groups[j].hasOwnProperty('enable') == true) {
         if (data.apps[i].groups[j]['enable'] == false) style = 'color: red;';
