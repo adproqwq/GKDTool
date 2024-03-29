@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/adpro/(.*)",
-      "destination": "api/proxy"
-    }
-  ]
-}
