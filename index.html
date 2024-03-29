@@ -1,68 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-        <title>GKD默认订阅自定义工具</title>
-        <link rel="stylesheet" href="./style/index.css">
-    </head>
-    <body>
-        <div>
-            <input id="name" placeholder="请输入应用名或包名以搜索" onkeydown="if(event.keyCode == 13) search();">
-        </div>
-        <div>
-            <button type="button" class="btn btn1" onclick="output('all');">导出全部</button>
-            <span>导出格式：</span>
-            <select id="outputMode">
-                <option value="json">JSON</option>
-                <option value="json5">JSON5</option>
-            </select>
-        </div>
-        <div>
-            <span>导入外部订阅文件：</span>
-            <input id="upload" type="file" accept=".json5, application/json" onchange="readFile();">
-            <span>选择第三方订阅：</span>
-            <select id="thirdParty">
-                <option selected disabled hidden value="defult" label="默认订阅"></option>
-                <option value="Adpro" label="Adpro的GKD订阅"></option>
-                <option value="AIsouler" label="AIsouler的GKD订阅"></option>
-                <option value="aoguai" label="aoguai的GKD订阅"></option>
-                <option value="ganlinte" label="甘霖的GKD订阅"></option>
-            </select>
-            <button type="button" class="btn btn1" onclick="getThirdPartySub();">快捷导入第三方订阅</button>
-        </div>
-        <div id="switchStatus">
-            <button type="button" class="btn btn1" onclick="switchStatus('memorize');">记忆当前订阅开关状态</button>
-            <button type="button" class="btn btn1" onclick="switchStatus('read');">读取当前订阅开关状态</button>
-        </div>
-        <div id="quickStart">
-            <button type="button" class="btn btn1" onclick="launch_GKD();">一键打开GKD</button>
-        </div>
-        <div id="version">
-            <div id="subVer"></div>
-            <div id="codeVer"></div>
-        </div>
-        <div id="appList"></div>
-        <div id="edit" class="editor">
-            <div class="editor-input">
-                <span class="close">&times;</span>
-                <textarea id="content" cols="20" rows="25"></textarea>
-                <button type="submit" id="save">保存</button>
-            </div>
-        </div>
-        <div id="copyright-box">
-            <div id="copyright-footer" class="column small">
-                <ul class="footer-column-b">
-                    <li>托管服务：<a href="https://vercel.com/">Vercel</a></li>
-                    <li>特别鸣谢：<a href="https://github.com/gkd-kit/gkd">GKD</a>及其<a href="https://github.com/gkd-kit/subscription">默认订阅</a>项目</li>
-                    <li>本网站由Adpro开发</li>
-                </ul>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/axios@1.6.5/dist/axios.min.js"></script>
-        <script src="https://cdn.bootcdn.net/ajax/libs/json5/2.2.3/index.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/callapp-lib@latest/dist/index.umd.js"></script>
-        <script src="./src/index.js"></script>
-        <script>getDetails();</script>
-    </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+  <title>GKD默认订阅自定义工具</title>
+  <link rel="stylesheet" href="./style/index.css">
+</head>
+
+<body>
+  <div>
+    <input id="name" placeholder="请输入应用名或包名以搜索" onkeydown="if(event.keyCode == 13) search();">
+  </div>
+  <div>
+    <button type="button" class="btn btn1" onclick="output('all');">导出全部</button>
+    <span>导出格式：</span>
+    <select id="outputMode">
+      <option value="json">JSON</option>
+      <option value="json5">JSON5</option>
+    </select>
+  </div>
+  <div>
+    <span>导入外部订阅文件：</span>
+    <input id="upload" type="file" accept=".json5, application/json" onchange="readFile();">
+    <span>选择第三方订阅：</span>
+    <select id="thirdParty">
+      <option selected disabled hidden value="defult" label="默认订阅"></option>
+      <option value="Adpro" label="Adpro的GKD订阅"></option>
+      <option value="AIsouler" label="AIsouler的GKD订阅"></option>
+      <option value="aoguai" label="aoguai的GKD订阅"></option>
+      <option value="ganlinte" label="甘霖的GKD订阅"></option>
+    </select>
+    <button type="button" class="btn btn1" onclick="getThirdPartySub();">快捷导入第三方订阅</button>
+  </div>
+  <div id="switchStatus">
+    <button type="button" class="btn btn1" onclick="switchStatus('memorize');">记忆当前订阅开关状态</button>
+    <button type="button" class="btn btn1" onclick="switchStatus('read');">读取当前订阅开关状态</button>
+  </div>
+  <div id="quickStart">
+    <button type="button" class="btn btn1" onclick="launch_GKD();">一键打开GKD</button>
+  </div>
+  <div id="version">
+    <div id="subVer"></div>
+    <div id="codeVer"></div>
+  </div>
+  <div id="appList"></div>
+  <div id="edit" class="editor">
+    <div class="editor-input">
+      <span class="close">&times;</span>
+      <textarea id="content" cols="20" rows="25"></textarea>
+      <button type="submit" id="save">保存</button>
+    </div>
+  </div>
+  <div id="copyright-box">
+    <div id="copyright-footer" class="column small">
+      <ul class="footer-column-b">
+        <li>托管服务：<a href="https://vercel.com/">Vercel</a></li>
+        <li>特别鸣谢：<a href="https://github.com/gkd-kit/gkd">GKD</a>及其<a
+            href="https://github.com/gkd-kit/subscription">默认订阅</a>项目</li>
+        <li>本网站由Adpro开发</li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.5/dist/axios.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/json5/2.2.3/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/callapp-lib@latest/dist/index.umd.js"></script>
+  <script src="./src/index.js"></script>
+  <script>getDetails();</script>
+</body>
+
 </html>
