@@ -235,7 +235,7 @@ function launch_GKD() {
       package: 'li.songe.gkd',
       scheme: 'gkd',
     },
-    fallback: 'https://gkd.li/guide/#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85',
+    fallback: 'https://gkd.li/guide/#install',
   };
   const callLib = new CallApp(options);
   callLib.open({
