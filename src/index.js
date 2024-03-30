@@ -63,141 +63,15 @@ function changeSwitch(index, job) {
 };
 
 function search() {
-  var target = document.getElementById('name').value;
-  var same, include = 0;
-  var preferences = [];
-  var secondaryOptions = [];
-  if (target == '') writeTable(fullScript);
-  else {
-    if (target.split(' ').indexOf('rules') != -1) {
-      if (target.split(' ').length == 3) {
-        document.getElementById('appList').innerHTML = initTable;
-        eachAppRules = '';
-        for (let i in script) {
-          if (script[i].name == target.split(' ')[2] || script[i].id == target.split(' ')[2]) {
-            for (let j in script[i].groups) {
-              if (script[i].groups[j].name.includes(target.split(' ')[1]) == true) {
-                packageName = script[i].id;
-                appName = script[i].name;
-                ruleName = script[i].groups[j].name;
-                for(let z of categories){
-                  if(ruleName.split('-')[0] === z.name){
-                    category = ruleName.split('-')[0];
-                    break;
-                  }
-                  else category = '';
-                }
-                if (script[i].groups[j].hasOwnProperty('enable') == true) {
-                  if (script[i].groups[j]['enable'] == false) style = 'color: red;';
-                  else style = 'color: green;';
-                }
-                else style = 'color: green;';
-                if (script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
-                else desc = '该规则暂无描述';
-                eachAppRules += tableInfo(appName, packageName, category, String(i) + '.' + String(j), style, ruleName, desc);
-              }
-            }
-          }
-        }
-        let ruleList = document.querySelector('tbody');
-        ruleList.innerHTML = eachAppRules;
-      }
-      else if (target.split(' ').length == 2) {
-        document.getElementById('appList').innerHTML = initTable;
-        eachAppRules = '';
-        for (let i in script) {
-          for (let j in script[i].groups) {
-            if (script[i].groups[j].name.includes(target.split(' ')[1]) == true) {
-              packageName = script[i].id;
-              appName = script[i].name;
-              ruleName = script[i].groups[j].name;
-              for(let z of categories){
-                if(ruleName.split('-')[0] === z.name){
-                  category = ruleName.split('-')[0];
-                  break;
-                }
-                else category = '';
-              }
-              if (script[i].groups[j].hasOwnProperty('enable') == true) {
-                if (script[i].groups[j]['enable'] == false) style = 'color: red;';
-                else style = 'color: green;';
-              }
-              else style = 'color: green;';
-              if (script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
-              else desc = '该规则暂无描述';
-              eachAppRules += tableInfo(appName, packageName, category, String(i) + '.' + String(j), style, ruleName, desc);
-            }
-          }
-        }
-        let ruleList = document.querySelector('tbody');
-        ruleList.innerHTML = eachAppRules;
-      }
-      else if (target.split(' ').length == 1) alert('命令非法！');
-    }
-    else {
-      document.getElementById('appList').innerHTML = initTable;
-      eachAppRules = '';
-      for (let i in script) {
-        if (script[i].name.includes(target) == true || script[i].id.includes(target) == true) {
-          if (script[i].name == target || script[i].id == target) {
-            preferences.push(i);
-            same += 1;
-          }
-          else {
-            secondaryOptions.push(i);
-            include += 1;
-          }
-        }
-      }
-      var packageName, appName, ruleName, category, desc;
-      for (let i in preferences) {
-        packageName = script[preferences[i]].id;
-        appName = script[preferences[i]].name;
-        for (let j in script[preferences[i]].groups) {
-          ruleName = script[preferences[i]].groups[j].name;
-          for(let z of categories){
-            if(ruleName.split('-')[0] === z.name){
-              category = ruleName.split('-')[0];
-              break;
-            }
-            else category = '';
-          }
-          if (script[preferences[i]].groups[j].hasOwnProperty('enable') == true) {
-            if (script[preferences[i]].groups[j]['enable'] == false) style = 'color: red;';
-            else style = 'color: green;';
-          }
-          else style = 'color: green;';
-          if (script[preferences[i]].groups[j].hasOwnProperty('desc') == true) desc = script[preferences[i]].groups[j].desc;
-          else desc = '该规则暂无描述';
-          eachAppRules += tableInfo(appName, packageName, category, String(preferences[i]) + '.' + String(j), style, ruleName, desc);
-        };
-      }
-      for (let i in secondaryOptions) {
-        packageName = script[secondaryOptions[i]].id;
-        appName = script[secondaryOptions[i]].name;
-        for (let j in script[secondaryOptions[i]].groups) {
-          ruleName = script[secondaryOptions[i]].groups[j].name;
-          for(let z of categories){
-            if(ruleName.split('-')[0] === z.name){
-              category = ruleName.split('-')[0];
-              break;
-            }
-            else category = '';
-          }
-          if (script[secondaryOptions[i]].groups[j].hasOwnProperty('enable') == true) {
-            if (script[secondaryOptions[i]].groups[j]['enable'] == false) style = 'color: red;';
-            else style = 'color: green;';
-          }
-          else style = 'color: green;';
-          if (script[secondaryOptions[i]].groups[j].hasOwnProperty('desc') == true) desc = script[secondaryOptions[i]].groups[j].desc;
-          else desc = '该规则暂无描述';
-          eachAppRules += tableInfo(appName, packageName, category, String(secondaryOptions[i]) + '.' + String(j), style, ruleName, desc);
-        };
-      }
-      let ruleList = document.querySelector('tbody');
-      ruleList.innerHTML = eachAppRules;
+  const target = document.getElementById('name').value;
+  let result = fullScript;
+  result.apps = [];
+  for(let i of script){
+    if(i.name.includes(target) || i.id.includes(target)){
+      result.apps.push(i);
     }
   }
+  writeTable(result);
 };
 
 function output(type) {
@@ -233,8 +107,8 @@ function output(type) {
 };
 
 function getDetails() {
-  axios.get('../gkd.json5').then(function (data) {
-    data = JSON5.parse(data.data);
+  $.get('https://fastly.jsdelivr.net/npm/@gkd-kit/subscription', (data) => {
+    data = JSON5.parse(data);
     writeTable(data);
   });
 };
@@ -406,16 +280,16 @@ function writeTable(data) {
   fullScript = data;
   script = data.apps;
   categories = data.categories;
-  document.getElementById('subVer').innerHTML = '<span>订阅版本：' + data.version + '</span>';
+  document.getElementById('subVer').innerHTML = '<span>订阅版本：' + fullScript.version + '</span>';
   document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
   document.getElementById('appList').innerHTML = initTable;
   var eachAppRules = '';
-  for (let i in data.apps) {
+  for (let i in script) {
     var packageName, appName, category, ruleName, desc, style;
-    packageName = data.apps[i].id;
-    appName = data.apps[i].name;
-    for (let j in data.apps[i].groups) {
-      ruleName = data.apps[i].groups[j].name;
+    packageName = script[i].id;
+    appName = script[i].name;
+    for (let j in script[i].groups) {
+      ruleName = script[i].groups[j].name;
       for(let z of categories){
         if(ruleName.split('-')[0] === z.name){
           category = ruleName.split('-')[0];
@@ -423,12 +297,12 @@ function writeTable(data) {
         }
         else category = '';
       }
-      if (data.apps[i].groups[j].hasOwnProperty('enable') == true) {
-        if (data.apps[i].groups[j]['enable'] == false) style = 'color: red;';
+      if (script[i].groups[j].hasOwnProperty('enable') == true) {
+        if (script[i].groups[j].enable == false) style = 'color: red;';
         else style = 'color: green;';
       }
       else style = 'color: green;';
-      if (data.apps[i].groups[j].hasOwnProperty('desc') == true) desc = data.apps[i].groups[j].desc;
+      if (script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
       else desc = '该规则暂无描述';
       eachAppRules += tableInfo(appName, packageName, category, String(i) + '.' + String(j), style, ruleName, desc);
     };
