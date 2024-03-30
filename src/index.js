@@ -16,8 +16,8 @@ var initTable = `
     </thead>
     <tbody></tbody>
 </table>`;
-var script, fullScript, categories;
-const codeVer = '1.2.1';
+var script, fullScript, categories, originSub;
+const codeVer = '1.2.2';
 
 function changeSwitch(index, job) {
   if (index != 'all') {
@@ -64,14 +64,17 @@ function changeSwitch(index, job) {
 
 function search() {
   const target = document.getElementById('name').value;
-  let result = fullScript;
-  result.apps = [];
-  for(let i of script){
-    if(i.name.includes(target) || i.id.includes(target)){
-      result.apps.push(i);
+  if(target != ''){
+    let result = JSON5.parse(JSON5.stringify(fullScript));
+    result.apps = [];
+    for(let i of script){
+      if(i.name.includes(target) || i.id.includes(target)){
+        result.apps.push(i);
+      }
     }
+    writeTable(result);
   }
-  writeTable(result);
+  else writeTable(originSub);
 };
 
 function output(type) {
@@ -108,8 +111,8 @@ function output(type) {
 
 function getDetails() {
   $.get('https://fastly.jsdelivr.net/npm/@gkd-kit/subscription', (data) => {
-    data = JSON5.parse(data);
-    writeTable(data);
+    originSub = JSON5.parse(data);
+    writeTable(originSub);
   });
 };
 
@@ -201,36 +204,36 @@ function getThirdPartySub() {
   let index = userselect.selectedIndex;
   if (userselect.options[index].value == 'Adpro') {
     $.get('https://raw.gitmirror.com/Adpro-Team/GKD_subscription/main/dist/Adpro_gkd.json5', (data) => {
-      data = JSON5.parse(data);
-      writeTable(data);
+      originSub = JSON5.parse(data);
+      writeTable(originSub);
       alert('导入成功！');
     });
   }
   else if (userselect.options[index].value == 'AIsouler') {
     $.get('https://raw.gitmirror.com/AIsouler/GKD_subscription/main/dist/AIsouler_gkd.json5', (data) => {
-      data = JSON5.parse(data);
-      writeTable(data);
+      originSub = JSON5.parse(data);
+      writeTable(originSub);
       alert('导入成功！');
     });
   }
   else if (userselect.options[index].value == 'aoguai') {
     $.get('https://raw.gitmirror.com/aoguai/subscription/custom/dist/aoguai_gkd.json5', (data) => {
-      data = JSON5.parse(data);
-      writeTable(data);
+      originSub = JSON5.parse(data);
+      writeTable(originSub);
       alert('导入成功！');
     });
   }
   else if (userselect.options[index].value == 'ganlinte') {
     $.get('https://raw.gitmirror.com/ganlinte/GKD-subscription/main/dist/ganlin_gkd.json5', (data) => {
-      data = JSON5.parse(data);
-      writeTable(data);
+      originSub = JSON5.parse(data);
+      writeTable(originSub);
       alert('导入成功！');
     });
   }
   else if (userselect.options[index].value == '114514') {
     $.get('https://raw.gitmirror.com/gkd-sub-repo/114514_subscription/main/dist/114514_gkd.json5', (data) => {
-      data = JSON5.parse(data);
-      writeTable(data);
+      originSub = JSON5.parse(data);
+      writeTable(originSub);
       alert('导入成功！');
     });
   }
