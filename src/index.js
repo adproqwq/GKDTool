@@ -216,6 +216,13 @@ function getThirdPartySub() {
       alert('导入成功！');
     });
   }
+  else if (userselect.options[index].value == 'MengNianxiaoyao') {
+    $.get('https://registry.npmmirror.com/gkd-subscription/latest/files', (data) => {
+      originSub = JSON5.parse(data);
+      writeTable(originSub);
+      alert('导入成功！');
+    });
+  }
 };
 
 function launch_GKD() {
