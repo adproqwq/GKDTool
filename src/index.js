@@ -1,5 +1,5 @@
-var initTable = `
-<table id="appListTable">
+const initAppTable = `
+<table id="appListTable" class="listTable">
     <thead>
         <tr>
             <th>应用名</th>
@@ -17,7 +17,7 @@ var initTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript, categories, originSub;
-const codeVer = '1.2.2';
+const codeVer = '1.2.3';
 
 function changeSwitch(index, job) {
   if (index != 'all') {
@@ -174,28 +174,7 @@ function switchStatus(type) {
     alert('一字不落地还原了！');
     script = JSON5.parse(localStorage.getItem(String(fullScript.id)));
     fullScript.apps = script;
-    document.getElementById('subVer').innerHTML = '<span>订阅版本：' + fullScript.version + '</span>';
-    document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
-    document.getElementById('appList').innerHTML = initTable;
-    var eachAppRules = '';
-    for (let i in script) {
-      var packageName, appName, ruleName, desc, style;
-      packageName = script[i].id;
-      appName = script[i].name;
-      for (let j in script[i].groups) {
-        ruleName = script[i].groups[j].name;
-        if (script[i].groups[j].hasOwnProperty('enable') == true) {
-          if (script[i].groups[j]['enable'] == false) style = 'color: red;';
-          else style = 'color: green;';
-        }
-        else style = 'color: green;';
-        if (script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
-        else desc = '该规则暂无描述';
-        eachAppRules += tableInfo(appName, packageName, String(i) + '.' + String(j), style, ruleName, desc);
-      };
-    };
-    let ruleList = document.querySelector('tbody');
-    ruleList.innerHTML = eachAppRules;
+    writeTable(fullScript);
   }
 };
 
@@ -285,8 +264,8 @@ function writeTable(data) {
   categories = data.categories;
   document.getElementById('subVer').innerHTML = '<span>订阅版本：' + fullScript.version + '</span>';
   document.getElementById('codeVer').innerHTML = '<span>当前程序版本：' + codeVer + '</span>';
-  document.getElementById('appList').innerHTML = initTable;
-  var eachAppRules = '';
+  document.getElementById('appList').innerHTML = initAppTable;
+  var eachAppRule = '';
   for (let i in script) {
     var packageName, appName, category, ruleName, desc, style;
     packageName = script[i].id;
@@ -307,9 +286,8 @@ function writeTable(data) {
       else style = 'color: green;';
       if (script[i].groups[j].hasOwnProperty('desc') == true) desc = script[i].groups[j].desc;
       else desc = '该规则暂无描述';
-      eachAppRules += tableInfo(appName, packageName, category, String(i) + '.' + String(j), style, ruleName, desc);
+      eachAppRule += tableInfo(appName, packageName, category, String(i) + '.' + String(j), style, ruleName, desc);
     };
   };
-  let ruleList = document.querySelector('tbody');
-  ruleList.innerHTML = eachAppRules;
+  document.querySelector('tbody').innerHTML = eachAppRule;
 };

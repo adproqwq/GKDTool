@@ -112,20 +112,20 @@ input#name {
   text-align: center;
 }
 
-#appListTable {
+.listTable {
   border-collapse: collapse;
   width: 100%;
   table-layout: fixed;
 }
 
-#appListTable td {
+.listTable td {
   border: 1px solid dodgerblue;
   padding: 8px;
   word-break: break-all;
   word-wrap: break-word;
 }
 
-#appListTable th {
+.listTable th {
   border: 1px solid dodgerblue;
   padding: 8px;
   padding-top: 12px;
