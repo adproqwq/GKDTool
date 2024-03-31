@@ -17,7 +17,7 @@ const initAppTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript, categories, originSub;
-const codeVer = '1.2.3';
+const codeVer = '1.2.4';
 
 function changeSwitch(index, job) {
   if (index != 'all') {
@@ -225,22 +225,40 @@ function getThirdPartySub() {
   }
 };
 
-function launch_GKD() {
-  const options = {
-    scheme: {
-      protocol: 'gkd',
-      host: 'import',
-    },
-    intent: {
-      package: 'li.songe.gkd',
-      scheme: 'gkd',
-    },
-    fallback: 'https://gkd.li/guide/#install',
-  };
-  const callLib = new CallApp(options);
-  callLib.open({
-    path: 'import',
-  });
+function quickStart(app) {
+  if(app == 'GKD'){
+    const options = {
+      scheme: {
+        protocol: 'gkd',
+        host: 'import',
+      },
+      intent: {
+        package: 'li.songe.gkd',
+        scheme: 'gkd',
+      },
+      fallback: 'https://gkd.li/guide/#install',
+    };
+    const callLib = new CallApp(options);
+    callLib.open({
+      path: 'import',
+    });
+  }
+  else if(app == 'GKDTool'){
+    const options = {
+      scheme: {
+        protocol: 'gkdtool',
+      },
+      intent: {
+        package: 'xyz.adproqwq.GKDTool',
+        scheme: 'gkdtool',
+      },
+      fallback: 'https://www.magicalapk.com/appview?id=1711811784193',
+    };
+    const callLib = new CallApp(options);
+    callLib.open({
+      path: '',
+    });
+  }
 };
 
 //复用代码
