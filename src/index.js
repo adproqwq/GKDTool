@@ -17,7 +17,7 @@ const initAppTable = `
     <tbody></tbody>
 </table>`;
 var script, fullScript, categories, originSub;
-const codeVer = '1.2.4';
+const codeVer = '1.2.5';
 
 function changeSwitch(index, job) {
   if (index != 'all') {
@@ -67,7 +67,7 @@ function search() {
   if(target != ''){
     let result = JSON5.parse(JSON5.stringify(fullScript));
     result.apps = [];
-    for(let i of script){
+    for(let i of originSub.apps){
       if(i.name.includes(target) || i.id.includes(target)){
         result.apps.push(i);
       }
